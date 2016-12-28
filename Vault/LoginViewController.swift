@@ -86,10 +86,10 @@ class LoginViewController: UIViewController {
     }
     
     private func loginSuccessful() {
-//        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//        navigationController?.pushViewController(homeVC, animated: true)
-        let entry = self.storyboard?.instantiateViewController(withIdentifier: "EntryViewController") as! EntryViewController
-        present(entry, animated: true, completion: nil)
+        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        navigationController?.pushViewController(homeVC, animated: true)
+//        let entry = self.storyboard?.instantiateViewController(withIdentifier: "EntryViewController") as! EntryViewController
+//        present(entry, animated: true, completion: nil)
     }
 }
 

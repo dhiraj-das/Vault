@@ -10,7 +10,7 @@
 		8B022D281E0F0C830011AE73 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B022D271E0F0C830011AE73 /* EntryViewController.swift */; };
 		8B0842C41E0DBBFC0006EF76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0842C31E0DBBFC0006EF76 /* GoogleService-Info.plist */; };
 		8B0C91331E083DB40036AA63 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C91321E083DB40036AA63 /* DetailViewController.swift */; };
-		8B0EA4821E0C5A080028D020 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EA4811E0C5A080028D020 /* HomeTableViewCell.swift */; };
+		8B0EA4821E0C5A080028D020 /* HomeEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EA4811E0C5A080028D020 /* HomeEntryCell.swift */; };
 		8B0EA4851E0C5A620028D020 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EA4841E0C5A620028D020 /* Entry.swift */; };
 		8B2B04981E0AFAF70076799E /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */; };
 		8BF3EFDE1E0577E4002BCB60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFDD1E0577E4002BCB60 /* AppDelegate.swift */; };
@@ -19,7 +19,6 @@
 		8BF3EFE51E0577E4002BCB60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3EFE41E0577E4002BCB60 /* Assets.xcassets */; };
 		8BF3EFE81E0577E4002BCB60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3EFE61E0577E4002BCB60 /* LaunchScreen.storyboard */; };
 		8BF3EFF01E057C8E002BCB60 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFEF1E057C8E002BCB60 /* HomeViewController.swift */; };
-		8BF3EFF41E05A6E5002BCB60 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFF31E05A6E5002BCB60 /* NewEntryViewController.swift */; };
 		8BF3EFF71E06D9F8002BCB60 /* FlatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFF61E06D9F8002BCB60 /* FlatButton.swift */; };
 		A05EBE7AE2CC978B2F106A5A /* Pods_Vault.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48EDC4DA34C55641B8A113D /* Pods_Vault.framework */; };
 /* End PBXBuildFile section */
@@ -29,7 +28,7 @@
 		8B022D271E0F0C830011AE73 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		8B0842C31E0DBBFC0006EF76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B0C91321E083DB40036AA63 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		8B0EA4811E0C5A080028D020 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		8B0EA4811E0C5A080028D020 /* HomeEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeEntryCell.swift; sourceTree = "<group>"; };
 		8B0EA4841E0C5A620028D020 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		8B10F1141E105489006B74F9 /* Vault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vault.entitlements; sourceTree = "<group>"; };
 		8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
@@ -41,7 +40,6 @@
 		8BF3EFE71E0577E4002BCB60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BF3EFE91E0577E4002BCB60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BF3EFEF1E057C8E002BCB60 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		8BF3EFF31E05A6E5002BCB60 /* NewEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
 		8BF3EFF61E06D9F8002BCB60 /* FlatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatButton.swift; sourceTree = "<group>"; };
 		C48EDC4DA34C55641B8A113D /* Pods_Vault.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vault.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BA02EC16D848DBECF55B5B /* Pods-Vault.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vault.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vault/Pods-Vault.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 				8B0C91321E083DB40036AA63 /* DetailViewController.swift */,
 				8BF3EFDF1E0577E4002BCB60 /* LoginViewController.swift */,
 				8BF3EFEF1E057C8E002BCB60 /* HomeViewController.swift */,
-				8BF3EFF31E05A6E5002BCB60 /* NewEntryViewController.swift */,
 				8B022D271E0F0C830011AE73 /* EntryViewController.swift */,
 			);
 			name = Modules;
@@ -144,7 +141,7 @@
 			children = (
 				8BF3EFF61E06D9F8002BCB60 /* FlatButton.swift */,
 				8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */,
-				8B0EA4811E0C5A080028D020 /* HomeTableViewCell.swift */,
+				8B0EA4811E0C5A080028D020 /* HomeEntryCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -284,10 +281,9 @@
 				8BF3EFDE1E0577E4002BCB60 /* AppDelegate.swift in Sources */,
 				8BF3EFF71E06D9F8002BCB60 /* FlatButton.swift in Sources */,
 				8B0C91331E083DB40036AA63 /* DetailViewController.swift in Sources */,
-				8BF3EFF41E05A6E5002BCB60 /* NewEntryViewController.swift in Sources */,
 				8B2B04981E0AFAF70076799E /* FloatingActionButton.swift in Sources */,
 				8B0EA4851E0C5A620028D020 /* Entry.swift in Sources */,
-				8B0EA4821E0C5A080028D020 /* HomeTableViewCell.swift in Sources */,
+				8B0EA4821E0C5A080028D020 /* HomeEntryCell.swift in Sources */,
 				8BF3EFF01E057C8E002BCB60 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
