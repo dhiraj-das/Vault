@@ -1,0 +1,62 @@
+PODS:
+  - Fabric (1.6.11)
+  - Firebase/AdMob (3.9.0):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (= 7.14.0)
+  - Firebase/Core (3.9.0):
+    - FirebaseAnalytics (= 3.5.1)
+    - FirebaseCore (= 3.4.4)
+  - FirebaseAnalytics (3.5.1):
+    - FirebaseCore (~> 3.4)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.4.4):
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.8)
+  - Google-Mobile-Ads-SDK (7.14.0)
+  - GoogleInterchangeUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleSymbolUtilities (1.1.2)
+  - GoogleToolboxForMac/Defines (2.1.0)
+  - GoogleToolboxForMac/NSData+zlib (2.1.0):
+    - GoogleToolboxForMac/Defines (= 2.1.0)
+  - IQKeyboardManagerSwift (4.0.8)
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
+  - SkyFloatingLabelTextField (2.0.0)
+  - SwiftKeychainWrapper (3.0.1)
+
+DEPENDENCIES:
+  - Fabric
+  - Firebase/AdMob
+  - Firebase/Core
+  - IQKeyboardManagerSwift
+  - RealmSwift
+  - SkyFloatingLabelTextField (~> 2.0.0)
+  - SwiftKeychainWrapper
+
+SPEC CHECKSUMS:
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Firebase: ff77ffb77b317c3720fef57a60e9335cebf962e6
+  FirebaseAnalytics: 6e58fc9b397664369ac7617fb0ba93fab6ba7b5b
+  FirebaseCore: d0ed25f27b6f9158eccc439f1be6f92e81207e28
+  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  Google-Mobile-Ads-SDK: dbb0211c52ca02f72331b831ce4ccd218cf08748
+  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
+  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
+  SkyFloatingLabelTextField: a81a0eaed2785d1599f11484c6ebc1c4eb5d1228
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+
+PODFILE CHECKSUM: ad74cad9be598b3c31c115290eceacd3e6757209
+
+COCOAPODS: 1.1.1

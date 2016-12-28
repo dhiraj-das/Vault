@@ -7,19 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B022D281E0F0C830011AE73 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B022D271E0F0C830011AE73 /* EntryViewController.swift */; };
+		8B0842C41E0DBBFC0006EF76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0842C31E0DBBFC0006EF76 /* GoogleService-Info.plist */; };
+		8B0C91331E083DB40036AA63 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C91321E083DB40036AA63 /* DetailViewController.swift */; };
+		8B0EA4821E0C5A080028D020 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EA4811E0C5A080028D020 /* HomeTableViewCell.swift */; };
+		8B0EA4851E0C5A620028D020 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EA4841E0C5A620028D020 /* Entry.swift */; };
+		8B2B04981E0AFAF70076799E /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */; };
 		8BF3EFDE1E0577E4002BCB60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFDD1E0577E4002BCB60 /* AppDelegate.swift */; };
 		8BF3EFE01E0577E4002BCB60 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFDF1E0577E4002BCB60 /* LoginViewController.swift */; };
 		8BF3EFE31E0577E4002BCB60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3EFE11E0577E4002BCB60 /* Main.storyboard */; };
 		8BF3EFE51E0577E4002BCB60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3EFE41E0577E4002BCB60 /* Assets.xcassets */; };
 		8BF3EFE81E0577E4002BCB60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3EFE61E0577E4002BCB60 /* LaunchScreen.storyboard */; };
 		8BF3EFF01E057C8E002BCB60 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFEF1E057C8E002BCB60 /* HomeViewController.swift */; };
-		8BF3EFF21E059810002BCB60 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3EFF11E059810002BCB60 /* GoogleService-Info.plist */; };
 		8BF3EFF41E05A6E5002BCB60 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFF31E05A6E5002BCB60 /* NewEntryViewController.swift */; };
+		8BF3EFF71E06D9F8002BCB60 /* FlatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFF61E06D9F8002BCB60 /* FlatButton.swift */; };
 		A05EBE7AE2CC978B2F106A5A /* Pods_Vault.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48EDC4DA34C55641B8A113D /* Pods_Vault.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		217D892BDE47C0FA8ABA769F /* Pods-Vault.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vault.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vault/Pods-Vault.debug.xcconfig"; sourceTree = "<group>"; };
+		8B022D271E0F0C830011AE73 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		8B0842C31E0DBBFC0006EF76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B0C91321E083DB40036AA63 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8B0EA4811E0C5A080028D020 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		8B0EA4841E0C5A620028D020 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		8B10F1141E105489006B74F9 /* Vault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vault.entitlements; sourceTree = "<group>"; };
+		8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
 		8BF3EFDA1E0577E4002BCB60 /* Vault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF3EFDD1E0577E4002BCB60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BF3EFDF1E0577E4002BCB60 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -28,8 +41,8 @@
 		8BF3EFE71E0577E4002BCB60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BF3EFE91E0577E4002BCB60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BF3EFEF1E057C8E002BCB60 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		8BF3EFF11E059810002BCB60 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BF3EFF31E05A6E5002BCB60 /* NewEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
+		8BF3EFF61E06D9F8002BCB60 /* FlatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatButton.swift; sourceTree = "<group>"; };
 		C48EDC4DA34C55641B8A113D /* Pods_Vault.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vault.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BA02EC16D848DBECF55B5B /* Pods-Vault.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vault.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vault/Pods-Vault.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +76,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8B022D251E0E94F20011AE73 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		8B022D261E0E959A0011AE73 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8B0C91321E083DB40036AA63 /* DetailViewController.swift */,
+				8BF3EFDF1E0577E4002BCB60 /* LoginViewController.swift */,
+				8BF3EFEF1E057C8E002BCB60 /* HomeViewController.swift */,
+				8BF3EFF31E05A6E5002BCB60 /* NewEntryViewController.swift */,
+				8B022D271E0F0C830011AE73 /* EntryViewController.swift */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		8B0EA4831E0C5A330028D020 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B0EA4841E0C5A620028D020 /* Entry.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		8BF3EFD11E0577E4002BCB60 = {
 			isa = PBXGroup;
 			children = (
@@ -84,17 +124,29 @@
 		8BF3EFDC1E0577E4002BCB60 /* Vault */ = {
 			isa = PBXGroup;
 			children = (
+				8B10F1141E105489006B74F9 /* Vault.entitlements */,
+				8B022D261E0E959A0011AE73 /* Modules */,
+				8B022D251E0E94F20011AE73 /* Common */,
+				8B0EA4831E0C5A330028D020 /* Model */,
+				8BF3EFF51E06A2C9002BCB60 /* Views */,
 				8BF3EFDD1E0577E4002BCB60 /* AppDelegate.swift */,
-				8BF3EFDF1E0577E4002BCB60 /* LoginViewController.swift */,
 				8BF3EFE11E0577E4002BCB60 /* Main.storyboard */,
 				8BF3EFE41E0577E4002BCB60 /* Assets.xcassets */,
 				8BF3EFE61E0577E4002BCB60 /* LaunchScreen.storyboard */,
 				8BF3EFE91E0577E4002BCB60 /* Info.plist */,
-				8BF3EFEF1E057C8E002BCB60 /* HomeViewController.swift */,
-				8BF3EFF11E059810002BCB60 /* GoogleService-Info.plist */,
-				8BF3EFF31E05A6E5002BCB60 /* NewEntryViewController.swift */,
+				8B0842C31E0DBBFC0006EF76 /* GoogleService-Info.plist */,
 			);
 			path = Vault;
+			sourceTree = "<group>";
+		};
+		8BF3EFF51E06A2C9002BCB60 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8BF3EFF61E06D9F8002BCB60 /* FlatButton.swift */,
+				8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */,
+				8B0EA4811E0C5A080028D020 /* HomeTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,7 +184,13 @@
 				TargetAttributes = {
 					8BF3EFD91E0577E4002BCB60 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = DNAANZPNS3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -160,7 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BF3EFE81E0577E4002BCB60 /* LaunchScreen.storyboard in Resources */,
-				8BF3EFF21E059810002BCB60 /* GoogleService-Info.plist in Resources */,
+				8B0842C41E0DBBFC0006EF76 /* GoogleService-Info.plist in Resources */,
 				8BF3EFE51E0577E4002BCB60 /* Assets.xcassets in Resources */,
 				8BF3EFE31E0577E4002BCB60 /* Main.storyboard in Resources */,
 			);
@@ -222,8 +280,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BF3EFE01E0577E4002BCB60 /* LoginViewController.swift in Sources */,
+				8B022D281E0F0C830011AE73 /* EntryViewController.swift in Sources */,
 				8BF3EFDE1E0577E4002BCB60 /* AppDelegate.swift in Sources */,
+				8BF3EFF71E06D9F8002BCB60 /* FlatButton.swift in Sources */,
+				8B0C91331E083DB40036AA63 /* DetailViewController.swift in Sources */,
 				8BF3EFF41E05A6E5002BCB60 /* NewEntryViewController.swift in Sources */,
+				8B2B04981E0AFAF70076799E /* FloatingActionButton.swift in Sources */,
+				8B0EA4851E0C5A620028D020 /* Entry.swift in Sources */,
+				8B0EA4821E0C5A080028D020 /* HomeTableViewCell.swift in Sources */,
 				8BF3EFF01E057C8E002BCB60 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,8 +412,11 @@
 			baseConfigurationReference = 217D892BDE47C0FA8ABA769F /* Pods-Vault.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Vault/Vault.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DNAANZPNS3;
 				INFOPLIST_FILE = Vault/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maladas.Vault;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -362,8 +429,11 @@
 			baseConfigurationReference = E1BA02EC16D848DBECF55B5B /* Pods-Vault.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Vault/Vault.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DNAANZPNS3;
 				INFOPLIST_FILE = Vault/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maladas.Vault;
 				PRODUCT_NAME = "$(TARGET_NAME)";

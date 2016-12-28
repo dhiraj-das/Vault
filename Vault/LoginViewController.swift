@@ -13,14 +13,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        navigationController?.pushViewController(homeVC, animated: true)
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -40,6 +32,7 @@ class LoginViewController: UIViewController {
                     // If authentication was successful then load the data.
                     OperationQueue.main.addOperation({ () -> Void in
                         print("Successful")
+                        self.loginSuccessful()
                     })
                 }
                 else{
@@ -90,6 +83,13 @@ class LoginViewController: UIViewController {
             // Show the custom alert view to allow users to enter the password.
             
         }
+    }
+    
+    private func loginSuccessful() {
+//        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//        navigationController?.pushViewController(homeVC, animated: true)
+        let entry = self.storyboard?.instantiateViewController(withIdentifier: "EntryViewController") as! EntryViewController
+        present(entry, animated: true, completion: nil)
     }
 }
 
