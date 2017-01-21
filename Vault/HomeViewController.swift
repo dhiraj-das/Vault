@@ -15,9 +15,9 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var bannedAd: GADBannerView!
     private var newEntryButton: FloatingActionButton!
-    let kCloseCellHeight: CGFloat = 68
-    let kCloseCellWithDescriptionHeight: CGFloat = 108
-    let kOpenCellHeight: CGFloat = 218
+    let kCloseCellHeight: CGFloat = 82//74
+    let kCloseCellWithDescriptionHeight: CGFloat = 142//112
+    let kOpenCellHeight: CGFloat = 204//218
     var entries: Results<Entry>!
     var interstitial: GADInterstitial!
     var cellHeights = [CGFloat]()
@@ -63,6 +63,7 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
             } else {
                 cellHeights.append(kCloseCellHeight)
             }
+            tableview.reloadData()
         }
     }
     
@@ -97,7 +98,6 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
         let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
         let realm = try! Realm(configuration: configuration)
         entries = realm.objects(Entry.self)
-        tableview.reloadData()
     }
 }
 
@@ -161,6 +161,7 @@ extension HomeViewController: UITableViewDelegate {
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
+        //tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: true)
     }
 }
 
