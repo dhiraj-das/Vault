@@ -10,6 +10,7 @@
 		8B022D281E0F0C830011AE73 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B022D271E0F0C830011AE73 /* EntryViewController.swift */; };
 		8B0842C41E0DBBFC0006EF76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0842C31E0DBBFC0006EF76 /* GoogleService-Info.plist */; };
 		8B0C91331E083DB40036AA63 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C91321E083DB40036AA63 /* DetailViewController.swift */; };
+		8B0E7D541E33D27400852FFF /* RoundedCornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0E7D531E33D27400852FFF /* RoundedCornerButton.swift */; };
 		8B0EA4821E0C5A080028D020 /* HomeEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EA4811E0C5A080028D020 /* HomeEntryCell.swift */; };
 		8B0EA4851E0C5A620028D020 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EA4841E0C5A620028D020 /* Entry.swift */; };
 		8B1075E81E168CEC0060A9EE /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1075E71E168CEC0060A9EE /* KeychainHelper.swift */; };
@@ -30,6 +31,7 @@
 		8B022D271E0F0C830011AE73 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		8B0842C31E0DBBFC0006EF76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B0C91321E083DB40036AA63 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8B0E7D531E33D27400852FFF /* RoundedCornerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornerButton.swift; sourceTree = "<group>"; };
 		8B0EA4811E0C5A080028D020 /* HomeEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeEntryCell.swift; sourceTree = "<group>"; };
 		8B0EA4841E0C5A620028D020 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		8B1075E71E168CEC0060A9EE /* KeychainHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				8BF3EFF61E06D9F8002BCB60 /* FlatButton.swift */,
 				8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */,
 				8B0EA4811E0C5A080028D020 /* HomeEntryCell.swift */,
+				8B0E7D531E33D27400852FFF /* RoundedCornerButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				8B1075EA1E16B8DD0060A9EE /* UIColor+Extension.swift in Sources */,
 				8B1075E81E168CEC0060A9EE /* KeychainHelper.swift in Sources */,
 				8BF3EFF71E06D9F8002BCB60 /* FlatButton.swift in Sources */,
+				8B0E7D541E33D27400852FFF /* RoundedCornerButton.swift in Sources */,
 				8B0C91331E083DB40036AA63 /* DetailViewController.swift in Sources */,
 				8B2B04981E0AFAF70076799E /* FloatingActionButton.swift in Sources */,
 				8B0EA4851E0C5A620028D020 /* Entry.swift in Sources */,

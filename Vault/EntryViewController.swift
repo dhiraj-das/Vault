@@ -13,10 +13,7 @@ import SkyFloatingLabelTextField
 
 class EntryViewController: UIViewController {
     
-    @IBOutlet weak var usernameCenterY: NSLayoutConstraint!
-    @IBOutlet weak var passwordCenterY: NSLayoutConstraint!
-    @IBOutlet weak var additionalDetailsCenterY: NSLayoutConstraint!
-    @IBOutlet weak var websiteCenterY: NSLayoutConstraint!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var website: SkyFloatingLabelTextField!
     @IBOutlet weak var username: SkyFloatingLabelTextField!
     @IBOutlet weak var password: SkyFloatingLabelTextField!
@@ -28,66 +25,27 @@ class EntryViewController: UIViewController {
     private var saveButton: UIBarButtonItem!
     private var navItem: UINavigationItem!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        website.addTarget(self, action: #selector(textFieldChanged(sender:)), for: .editingChanged)
-        username.addTarget(self, action: #selector(textFieldChanged(sender:)), for: .editingChanged)
-        password.addTarget(self, action: #selector(textFieldChanged(sender:)), for: .editingChanged)
-        additionalDetails.addTarget(self, action: #selector(textFieldChanged(sender:)), for: .editingChanged)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupNavBar()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let _ = website.becomeFirstResponder()
     }
     
     @IBAction func didPressMaskPassword(_ sender: Any) {
         password.isSecureTextEntry = !password.isSecureTextEntry
     }
-    func setupNavBar() {
-        let navBar = UINavigationBar()
-        navBar.setBackgroundImage(UIImage(), for: .default)
-        navBar.shadowImage = UIImage()
-        navBar.isTranslucent = true
-        navBar.translatesAutoresizingMaskIntoConstraints = false
-        navItem = UINavigationItem(title: "New Entry")
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
-        cancelButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 16)!], for: .normal)
-        navItem.leftBarButtonItem = cancelButton
-        saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(savePressed))
-        saveButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.vaultGrey(), NSFontAttributeName: UIFont(name: "Avenir-Book", size: 16)!], for: .disabled)
-        saveButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 16)!], for: .normal)
-        navItem.rightBarButtonItem = saveButton
-        navBar.items = [navItem]
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!]
-        view.addSubview(navBar)
-        let leftConstraint = NSLayoutConstraint(item: navBar, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
-        let rightConstraint = NSLayoutConstraint(item: navBar, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0)
-        let topConstraint = NSLayoutConstraint(item: navBar, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 20)
-        view.addConstraints([leftConstraint, rightConstraint, topConstraint])
-    }
     
-    @objc func cancelPressed() {
+    @IBAction func cancelPressed(_ sender: Any) {
+        view.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func savePressed() {
-//        if validateFields() {
-//            let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
-//            let realm = try! Realm(configuration: configuration)
-//            try! realm.write {
-//                let obj = Entry(website: website.text!, username: username.text!, password: password.text!, details: additionalDetails.text!, imageData: imageData)
-//                realm.add(obj)
-//            }
-//            dismiss(animated: true, completion: nil)
-//        }
-        
+    @IBAction func savePressed(_ sender: Any) {
+        view.endEditing(true)
         if validateFields() {
             let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
             var realm: Realm?
@@ -123,31 +81,6 @@ class EntryViewController: UIViewController {
         }
     }
     
-    @objc func textFieldChanged(sender: UITextField) {
-        switch sender {
-        case website:
-            if (sender.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty)! {
-                websiteCenterY.constant = -5
-            } else {
-                websiteCenterY.constant = 2
-            }
-        case password:
-            if (sender.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty)! {
-                passwordCenterY.constant = -5
-            } else {
-                passwordCenterY.constant = 2
-            }
-        case username:
-            if (sender.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty)! {
-                usernameCenterY.constant = -5
-            } else {
-                usernameCenterY.constant = 2
-            }
-        default:
-            break
-        }
-    }
-    
     func fetchIcon(url website: String) {
         let URL = NSURL(string: "https://logo.clearbit.com/\(website)")
         if let url = URL {
@@ -172,7 +105,7 @@ extension EntryViewController: UITextFieldDelegate {
             if textField.text != nil && textField.text != "" {
                 fetchIcon(url: textField.text!)
             } else {
-                DispatchQueue.main.async { self.websiteIcon.image = nil }
+                DispatchQueue.main.async { self.websiteIcon.image = UIImage(named: "website-icon-29479") }
             }
         }
     }

@@ -15,12 +15,14 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var bannedAd: GADBannerView!
     private var newEntryButton: FloatingActionButton!
-    let kCloseCellHeight: CGFloat = 82//74
-    let kCloseCellWithDescriptionHeight: CGFloat = 142//112
-    let kOpenCellHeight: CGFloat = 204//218
+    let kCloseCellHeight: CGFloat = 84
+    let kCloseCellWithDescriptionHeight: CGFloat = 120
+    let kOpenCellHeight: CGFloat = 122//119
+    let kOpenCellWithDescriptionHeight: CGFloat = 150
     var entries: Results<Entry>!
     var interstitial: GADInterstitial!
     var cellHeights = [CGFloat]()
+    var blurEffectView: UIVisualEffectView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,7 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
         setupNavBar()
         loadEntries()
         createCellHeightsArray()
+        blurEffectView?.removeFromSuperview()
     }
     
     func setupNavBar() {
@@ -49,7 +52,7 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
         navigationItem.leftBarButtonItem = settingsButton
         navigationItem.rightBarButtonItem = addNewButton
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: false)
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -72,8 +75,22 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
     }
     
     @objc func addNewPressed() {
-        let newEntryViewController = storyboard?.instantiateViewController(withIdentifier: "EntryViewController") as! EntryViewController
-        present(newEntryViewController, animated: true, completion: nil)
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            self.blurEffectView = blurEffectView
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.addSubview(blurEffectView)
+            }, completion: { (Bool) in
+                let newEntryViewController = self.storyboard?.instantiateViewController(withIdentifier: "EntryViewController") as! EntryViewController
+                self.present(newEntryViewController, animated: true, completion: nil)
+
+            })
+        } else {
+            self.view.backgroundColor = UIColor.backgroundDark()
+        }
     }
     
     func layoutFAB() {
@@ -103,17 +120,17 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
 
 extension HomeViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? HomeEntryCell else {
-            return
-        }
-        cell.backgroundColor = UIColor.clear
-        if self.cellHeights[(indexPath as NSIndexPath).row] == self.kCloseCellHeight || self.cellHeights[(indexPath as NSIndexPath).row] == kCloseCellWithDescriptionHeight {
-            cell.selectedAnimation(false, animated: false, completion: nil)
-        } else {
-            cell.selectedAnimation(true, animated: false, completion: nil)
-        }
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let cell = cell as? HomeEntryCell else {
+//            return
+//        }
+//        cell.backgroundColor = UIColor.clear
+//        if self.cellHeights[(indexPath as NSIndexPath).row] == self.kCloseCellHeight || self.cellHeights[(indexPath as NSIndexPath).row] == kCloseCellWithDescriptionHeight {
+//            cell.selectedAnimation(false, animated: false, completion: nil)
+//        } else {
+//            cell.selectedAnimation(true, animated: false, completion: nil)
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return entries.count
@@ -125,6 +142,8 @@ extension HomeViewController: UITableViewDataSource {
             cell.subtitleLabel.text = entries[indexPath.item].username
             cell.displayImage.image = UIImage(data: entries[indexPath.item].imageData as Data)
             cell.descriptionTextView.text = entries[indexPath.item].details
+            cell.closeDescriptionText.text = entries[indexPath.item].details
+            cell.passwordLabel.text = entries[indexPath.item].password
             return cell
         }
         return UITableViewCell()
@@ -140,28 +159,31 @@ extension HomeViewController: UITableViewDelegate {
         guard case let cell as HomeEntryCell = tableView.cellForRow(at: indexPath) else {
             return
         }
-        if cell.isAnimating() {
-            return
-        }
-        var duration = 0.0
         if cellHeights[indexPath.row] == kCloseCellHeight || cellHeights[indexPath.row] == kCloseCellWithDescriptionHeight { // open cell
-            cellHeights[indexPath.row] = kOpenCellHeight
-            cell.selectedAnimation(true, animated: true, completion: nil)
-            duration = 0.5
+            if entries[indexPath.row].details.characters.count > 0 {
+                cellHeights[indexPath.row] = kOpenCellWithDescriptionHeight
+            } else {
+                cellHeights[indexPath.row] = kOpenCellHeight
+            }
+            cell.closeDescriptionText.isHidden = true
+            cell.descriptionTextView.isHidden = false
+            cell.passwordLabel.isHidden = false
+            //cell.selectedAnimation(true, animated: true, completion: nil)
         } else {// close cell
             if entries[indexPath.row].details.characters.count > 0 {
                 cellHeights[indexPath.row] = kCloseCellWithDescriptionHeight
             } else {
                 cellHeights[indexPath.row] = kCloseCellHeight
             }
-            cell.selectedAnimation(false, animated: true, completion: nil)
-            duration = 1.1
+            cell.closeDescriptionText.isHidden = false
+            cell.descriptionTextView.isHidden = true
+            cell.passwordLabel.isHidden = true
+            //cell.selectedAnimation(false, animated: true, completion: nil)
         }
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { _ in
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: { _ in
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
-        //tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: true)
     }
 }
 
