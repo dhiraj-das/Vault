@@ -12,6 +12,7 @@ pod 'RealmSwift'
 pod 'IQKeyboardManagerSwift'
 pod 'SkyFloatingLabelTextField', '~> 2.0.0'
 pod 'SwiftKeychainWrapper'
+pod 'FoldingCell'
 
   # Pods for Vault
 

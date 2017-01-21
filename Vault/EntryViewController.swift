@@ -8,9 +8,7 @@
 
 import Foundation
 import RealmSwift
-import Security
 import UIKit
-import SwiftKeychainWrapper
 import SkyFloatingLabelTextField
 
 class EntryViewController: UIViewController {
@@ -23,9 +21,16 @@ class EntryViewController: UIViewController {
     @IBOutlet weak var username: SkyFloatingLabelTextField!
     @IBOutlet weak var password: SkyFloatingLabelTextField!
     @IBOutlet weak var additionalDetails: SkyFloatingLabelTextField!
+    @IBOutlet weak var websiteIcon: UIImageView!
+    @IBOutlet weak var maskButton: UIButton!
+    
+    private var imageData: NSData?
+    private var saveButton: UIBarButtonItem!
+    private var navItem: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         website.addTarget(self, action: #selector(textFieldChanged(sender:)), for: .editingChanged)
         username.addTarget(self, action: #selector(textFieldChanged(sender:)), for: .editingChanged)
         password.addTarget(self, action: #selector(textFieldChanged(sender:)), for: .editingChanged)
@@ -42,17 +47,21 @@ class EntryViewController: UIViewController {
         setupNavBar()
     }
     
+    @IBAction func didPressMaskPassword(_ sender: Any) {
+        password.isSecureTextEntry = !password.isSecureTextEntry
+    }
     func setupNavBar() {
         let navBar = UINavigationBar()
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         navBar.isTranslucent = true
         navBar.translatesAutoresizingMaskIntoConstraints = false
-        let navItem = UINavigationItem(title: "New Entry")
+        navItem = UINavigationItem(title: "New Entry")
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
         cancelButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 16)!], for: .normal)
         navItem.leftBarButtonItem = cancelButton
-        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(savePressed))
+        saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(savePressed))
+        saveButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.vaultGrey(), NSFontAttributeName: UIFont(name: "Avenir-Book", size: 16)!], for: .disabled)
         saveButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 16)!], for: .normal)
         navItem.rightBarButtonItem = saveButton
         navBar.items = [navItem]
@@ -69,7 +78,49 @@ class EntryViewController: UIViewController {
     }
     
     @objc func savePressed() {
-        dismiss(animated: true, completion: nil)
+//        if validateFields() {
+//            let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+//            let realm = try! Realm(configuration: configuration)
+//            try! realm.write {
+//                let obj = Entry(website: website.text!, username: username.text!, password: password.text!, details: additionalDetails.text!, imageData: imageData)
+//                realm.add(obj)
+//            }
+//            dismiss(animated: true, completion: nil)
+//        }
+        
+        if validateFields() {
+            let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+            var realm: Realm?
+            do {
+                realm = try Realm(configuration: configuration)
+            } catch let error as NSError {
+                print("COULD NOT OPEN REALM")
+                print(error.debugDescription)
+                dismiss(animated: true, completion: nil)
+                return
+            }
+            if let realm = realm {
+                do {
+                    let _ = try realm.write {
+                        let record = Entry(website: website.text!, username: username.text!, password: password.text!, details: additionalDetails.text, imageData: imageData)
+                        realm.add(record)
+                    }
+                } catch let error as NSError {
+                    print("COULD NOT WRITE TO REALM")
+                    print(error.debugDescription)
+                    dismiss(animated: true, completion: nil)
+                    return
+                }
+                dismiss(animated: true, completion: nil)
+            }
+        } else {
+            let alert = UIAlertController(title: "Vault", message: "Please complete the fields before saving", preferredStyle: .alert)
+            let dismissButton = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(dismissButton)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @objc func textFieldChanged(sender: UITextField) {
@@ -86,88 +137,58 @@ class EntryViewController: UIViewController {
             } else {
                 passwordCenterY.constant = 2
             }
-        case additionalDetails:
-            if (sender.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty)! {
-                additionalDetailsCenterY.constant = -5
-            } else {
-                additionalDetailsCenterY.constant = 2
-            }
-        default:
+        case username:
             if (sender.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty)! {
                 usernameCenterY.constant = -5
             } else {
                 usernameCenterY.constant = 2
             }
+        default:
+            break
+        }
+    }
+    
+    func fetchIcon(url website: String) {
+        let URL = NSURL(string: "https://logo.clearbit.com/\(website)")
+        if let url = URL {
+            let session = URLSession.shared.dataTask(with: url as URL, completionHandler: { (data, response, error) in
+                if error == nil {
+                    self.imageData = data as NSData?
+                    let image = UIImage(data: data!)
+                    DispatchQueue.main.async {
+                        self.websiteIcon.image = image
+                        self.websiteIcon.layer.cornerRadius = 5
+                    }
+                }
+            })
+            session.resume()
         }
     }
 }
 
-//// Model definition
-//class EncryptionObject: Object {
-//    dynamic var stringProp = ""
-//}
-//let textView = UITextView(frame: UIScreen.main.applicationFrame)
-//override func viewDidAppear(_ animated: Bool) {
-//    super.viewDidAppear(animated)
-//    
-//    // Use an autorelease pool to close the Realm at the end of the block, so
-//    // that we can try to reopen it with different keys
-//    autoreleasepool {
-//        let configuration = Realm.Configuration(encryptionKey: getKey() as Data)
-//        let realm = try! Realm(configuration: configuration)
-//        
-//        // Add an object
-//        try! realm.write {
-//            let obj = EncryptionObject()
-//            obj.stringProp = "abcd"
-//            realm.add(obj)
-//        }
-//    }
-//    
-//    // Opening with wrong key fails since it decrypts to the wrong thing
-//    autoreleasepool {
-//        do {
-//            let configuration = Realm.Configuration(encryptionKey: "1234567890123456789012345678901234567890123456789012345678901233".data(using: String.Encoding.utf8, allowLossyConversion: false))
-//            _ = try Realm(configuration: configuration)
-//        } catch {
-//            log(text: "Open with wrong key: \(error)")
-//        }
-//    }
-//    
-//    // Opening wihout supplying a key at all fails
-//    autoreleasepool {
-//        do {
-//            _ = try Realm()
-//        } catch {
-//            log(text: "Open with no key: \(error)")
-//        }
-//    }
-//    
-//    // Reopening with the correct key works and can read the data
-//    autoreleasepool {
-//        let configuration = Realm.Configuration(encryptionKey: getKey() as Data)
-//        let realm = try! Realm(configuration: configuration)
-//        if let stringProp = realm.objects(EncryptionObject.self).first?.stringProp {
-//            log(text: "Saved object: \(stringProp)")
-//        }
-//    }
-//}
-//
-//func log(text: String) {
-//    textView.text = textView.text + text + "\n\n"
-//}
-//
-//func getKey() -> Data {
-//    
-//    if let key = KeychainWrapper.standard.data(forKey: "someid") {
-//        return key
-//    } else {
-//        var key = Data(count: 64)
-//        _ = key.withUnsafeMutableBytes { bytes in
-//            SecRandomCopyBytes(kSecRandomDefault, 64, bytes)
-//        }
-//        KeychainWrapper.standard.set(key, forKey: "someid")
-//        return key as Data
-//    }
-//}
-//}
+extension EntryViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == website {
+            if textField.text != nil && textField.text != "" {
+                fetchIcon(url: textField.text!)
+            } else {
+                DispatchQueue.main.async { self.websiteIcon.image = nil }
+            }
+        }
+    }
+    
+    func validateFields() -> Bool{
+        guard let websiteText = website.text, websiteText != "" else{
+            return false
+        }
+        guard let usernameText = username.text, usernameText != "" else{
+            return false
+        }
+        guard let passwordText = password.text, passwordText != "" else{
+            return false
+        }
+        return true
+    }
+}
+
+

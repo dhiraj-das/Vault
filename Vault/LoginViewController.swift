@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -23,7 +24,7 @@ class LoginViewController: UIViewController {
         var error: NSError?
         
         // Set the reason string that will appear on the authentication alert.
-        let reasonString = "Authentication is needed to access your notes."
+        let reasonString = "Authenticate to access your Vault."
         
         // Check if the device can evaluate the policy.
         if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) {
@@ -88,8 +89,6 @@ class LoginViewController: UIViewController {
     private func loginSuccessful() {
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         navigationController?.pushViewController(homeVC, animated: true)
-//        let entry = self.storyboard?.instantiateViewController(withIdentifier: "EntryViewController") as! EntryViewController
-//        present(entry, animated: true, completion: nil)
     }
 }
 
