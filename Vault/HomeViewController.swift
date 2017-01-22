@@ -23,6 +23,10 @@ class HomeViewController: UIViewController {
     var interstitial: GADInterstitial!
     var cellHeights = [CGFloat]()
     var blurEffectView: UIVisualEffectView?
+    lazy var searchBar = UISearchBar(frame: CGRect.zero)
+    var searchButton: UIBarButtonItem!
+    var settingsButton: UIBarButtonItem!
+    var addNewButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,20 +44,32 @@ class HomeViewController: UIViewController {
     }
     
     func setupNavBar() {
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
         navigationController?.setNavigationBarHidden(false, animated: false)
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.barTintColor = UIColor.navigationBar()
         navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = "Vault"
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!]
-        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(settingsPressed))
-        let addButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: nil)
-        let addNewButton = UIBarButtonItem(image: UIImage(named: "add_new"), style: .plain, target: self, action: #selector(addNewPressed))
-        navigationItem.leftBarButtonItem = settingsButton
-        navigationItem.rightBarButtonItem = addNewButton
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
+        
+        navigationItem.title = "Vault"
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!]
+        settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(settingsPressed))
+        searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonPressed))
+//        let buttonView = UIView(frame: CGRect(x: 10, y: 0, width: 60, height: 30))
+//        buttonView.backgroundColor = UIColor.barButton()
+//        buttonView.layer.cornerRadius = 15
+//        buttonView.clipsToBounds = true
+//        addNewButton = UIBarButtonItem(customView: buttonView)
+//        addNewButton.action = #selector(addNewPressed)
+//        addNewButton.target = self
+//        addNewButton.title = "Add"
+        addNewButton = UIBarButtonItem(image: UIImage(named: "add_new"), style: .plain, target: self, action: #selector(addNewPressed))
+        navigationItem.leftBarButtonItem = settingsButton
+        navigationItem.rightBarButtonItems = [addNewButton, searchButton]
+        searchBar.delegate = self
+        searchBar.searchBarStyle = .default
+        searchBar.showsCancelButton = true
+        searchBar.placeholder = "Search"
+        searchBar.isTranslucent = true
     }
     
     func createCellHeightsArray() {
@@ -178,5 +194,39 @@ extension HomeViewController: GADBannerViewDelegate{
 extension HomeViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    @objc func searchButtonPressed() {
+        showSearchBar()
+    }
+    
+    func showSearchBar() {
+        navigationItem.titleView = searchBar
+        navigationItem.setLeftBarButton(nil, animated: true)
+        navigationItem.setRightBarButtonItems(nil, animated: true)
+        navigationItem.hidesBackButton = true
+        searchBar.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            self.searchBar.alpha = 1
+        }, completion: { finished in
+            self.searchBar.becomeFirstResponder()
+        })
+    }
+    
+    func hideSearchBar() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchBar.alpha = 0
+        }, completion: { finished in
+            self.navigationItem.titleView = nil
+            self.navigationItem.title = "Vault"
+            self.navigationItem.setLeftBarButton(self.settingsButton, animated: true)
+            self.navigationItem.rightBarButtonItems = [self.addNewButton, self.searchButton]
+        })
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        hideSearchBar()
     }
 }
