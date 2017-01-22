@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import GoogleMobileAds
 
-class HomeViewController : UIViewController, UIGestureRecognizerDelegate, FloatingActionButtonDelegate {
+class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var bannedAd: GADBannerView!
@@ -43,20 +43,17 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
         navigationController?.setNavigationBarHidden(false, animated: false)
 //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 //        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.barTintColor = UIColor(red: 32/255, green: 36/255, blue: 47/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor.navigationBar()
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Vault"
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!]
         let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(settingsPressed))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: nil)
         let addNewButton = UIBarButtonItem(image: UIImage(named: "add_new"), style: .plain, target: self, action: #selector(addNewPressed))
         navigationItem.leftBarButtonItem = settingsButton
         navigationItem.rightBarButtonItem = addNewButton
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
-    }
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
     }
     
     func createCellHeightsArray() {
@@ -93,24 +90,6 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
         }
     }
     
-    func layoutFAB() {
-        newEntryButton = FloatingActionButton()
-        newEntryButton.delegate = self
-        newEntryButton.setLabel(title: "+", color: .white)
-        newEntryButton.translatesAutoresizingMaskIntoConstraints = false
-        UIApplication.shared.keyWindow?.addSubview(newEntryButton)
-        let trailing = NSLayoutConstraint(item: newEntryButton, attribute: .trailing, relatedBy: .equal, toItem: UIApplication.shared.keyWindow!, attribute: .trailing, multiplier: 1, constant: -30)
-        let height = NSLayoutConstraint(item: newEntryButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 55)
-        let width = NSLayoutConstraint(item: newEntryButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 55)
-        let bottom = NSLayoutConstraint(item: newEntryButton, attribute: .bottom, relatedBy: .equal, toItem: UIApplication.shared.keyWindow!, attribute: .bottom, multiplier: 1, constant: -30)
-        UIApplication.shared.keyWindow?.addConstraints([height, width,trailing,bottom])
-    }
-    
-    func didPressButton(sender: FloatingActionButton) {
-        let newEntryViewController = storyboard?.instantiateViewController(withIdentifier: "EntryViewController") as! EntryViewController
-        present(newEntryViewController, animated: true, completion: nil)
-    }
-    
     func loadEntries() {
         let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
         let realm = try! Realm(configuration: configuration)
@@ -119,18 +98,6 @@ class HomeViewController : UIViewController, UIGestureRecognizerDelegate, Floati
 }
 
 extension HomeViewController: UITableViewDataSource {
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let cell = cell as? HomeEntryCell else {
-//            return
-//        }
-//        cell.backgroundColor = UIColor.clear
-//        if self.cellHeights[(indexPath as NSIndexPath).row] == self.kCloseCellHeight || self.cellHeights[(indexPath as NSIndexPath).row] == kCloseCellWithDescriptionHeight {
-//            cell.selectedAnimation(false, animated: false, completion: nil)
-//        } else {
-//            cell.selectedAnimation(true, animated: false, completion: nil)
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return entries.count
@@ -159,7 +126,7 @@ extension HomeViewController: UITableViewDelegate {
         guard case let cell as HomeEntryCell = tableView.cellForRow(at: indexPath) else {
             return
         }
-        if cellHeights[indexPath.row] == kCloseCellHeight || cellHeights[indexPath.row] == kCloseCellWithDescriptionHeight { // open cell
+        if cellHeights[indexPath.row] == kCloseCellHeight || cellHeights[indexPath.row] == kCloseCellWithDescriptionHeight {                                // open cell
             if entries[indexPath.row].details.characters.count > 0 {
                 cellHeights[indexPath.row] = kOpenCellWithDescriptionHeight
             } else {
@@ -168,8 +135,7 @@ extension HomeViewController: UITableViewDelegate {
             cell.closeDescriptionText.isHidden = true
             cell.descriptionTextView.isHidden = false
             cell.passwordLabel.isHidden = false
-            //cell.selectedAnimation(true, animated: true, completion: nil)
-        } else {// close cell
+        } else {                                                            // close cell
             if entries[indexPath.row].details.characters.count > 0 {
                 cellHeights[indexPath.row] = kCloseCellWithDescriptionHeight
             } else {
@@ -178,7 +144,6 @@ extension HomeViewController: UITableViewDelegate {
             cell.closeDescriptionText.isHidden = false
             cell.descriptionTextView.isHidden = true
             cell.passwordLabel.isHidden = true
-            //cell.selectedAnimation(false, animated: true, completion: nil)
         }
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: { _ in
             tableView.beginUpdates()
@@ -207,5 +172,11 @@ extension HomeViewController: GADBannerViewDelegate{
         let request = GADRequest()
         request.testDevices = [ kGADSimulatorID, "282910d03e92c55c9127fe98f85612c8" ]
         bannedAd.load(request)
+    }
+}
+
+extension HomeViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }

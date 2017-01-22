@@ -15,4 +15,11 @@ extension UIColor {
     class func backgroundDark() -> UIColor {
         return UIColor(red: 24/255, green: 27/255, blue: 35/255, alpha: 1)
     }
+    class func barButton() -> UIColor {
+        return UIColor(red: 42/255, green: 46/255, blue: 57/255, alpha: 1)
+    }
+    class func navigationBar() -> UIColor {
+        return UIColor(red: 32/255, green: 36/255, blue: 47/255, alpha: 1)
+    }
+    
 }

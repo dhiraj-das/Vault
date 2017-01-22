@@ -24,6 +24,7 @@ class EntryViewController: UIViewController {
     private var imageData: NSData?
     private var saveButton: UIBarButtonItem!
     private var navItem: UINavigationItem!
+    var indicator: UIActivityIndicatorView!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -87,11 +88,18 @@ class EntryViewController: UIViewController {
             let session = URLSession.shared.dataTask(with: url as URL, completionHandler: { (data, response, error) in
                 if error == nil {
                     self.imageData = data as NSData?
-                    let image = UIImage(data: data!)
-                    DispatchQueue.main.async {
-                        self.websiteIcon.image = image
-                        self.websiteIcon.layer.cornerRadius = 5
+                    if let image = UIImage(data: data!) {
+                        DispatchQueue.main.async {
+                            self.websiteIcon.image = image
+                            self.websiteIcon.layer.cornerRadius = 5
+                        }
                     }
+                    self.indicator.stopAnimating()
+                    self.indicator.removeFromSuperview()
+                } else {
+                    DispatchQueue.main.async { self.websiteIcon.image = UIImage(named: "website-icon-29479") }
+                    self.indicator.stopAnimating()
+                    self.indicator.removeFromSuperview()
                 }
             })
             session.resume()
@@ -103,6 +111,10 @@ extension EntryViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == website {
             if textField.text != nil && textField.text != "" {
+                indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                indicator.center = CGPoint(x: websiteIcon.frame.width/2, y: websiteIcon.frame.height/2)
+                indicator.startAnimating()
+                websiteIcon.addSubview(indicator)
                 fetchIcon(url: textField.text!)
             } else {
                 DispatchQueue.main.async { self.websiteIcon.image = UIImage(named: "website-icon-29479") }
