@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     let kOpenCellHeight: CGFloat = 122//119
     let kOpenCellWithDescriptionHeight: CGFloat = 150
     var entries: Results<Entry>!
+    var mainEntries: Results<Entry>!
     var interstitial: GADInterstitial!
     var cellHeights = [CGFloat]()
     var blurEffectView: UIVisualEffectView?
@@ -108,8 +109,9 @@ class HomeViewController: UIViewController {
     
     func loadEntries() {
         let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
-        let realm = try! Realm(configuration: configuration)
-        entries = realm.objects(Entry.self)
+        let realm = try? Realm(configuration: configuration)
+        mainEntries = realm?.objects(Entry.self)
+        entries = mainEntries
     }
 }
 
@@ -208,6 +210,7 @@ extension HomeViewController: UISearchBarDelegate {
         navigationItem.setRightBarButtonItems(nil, animated: true)
         navigationItem.hidesBackButton = true
         searchBar.alpha = 0
+        searchBar.text = nil
         UIView.animate(withDuration: 0.5, animations: {
             self.searchBar.alpha = 1
         }, completion: { finished in
@@ -228,5 +231,19 @@ extension HomeViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         hideSearchBar()
+        entries = mainEntries
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+        let realm = try? Realm(configuration: configuration)
+        let predicate = NSPredicate(format: "website contains[c] %@", searchText)
+        entries = realm?.objects(Entry.self).filter(predicate)
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+        }
     }
 }

@@ -30,6 +30,6 @@ class Entry: Object{
     }
     
     override class func indexedProperties() -> [String] {
-        return ["title"]
+        return ["website"]
     }
 }
