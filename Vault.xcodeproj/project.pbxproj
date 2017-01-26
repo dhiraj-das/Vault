@@ -18,6 +18,12 @@
 		8B1075EA1E16B8DD0060A9EE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1075E91E16B8DD0060A9EE /* UIColor+Extension.swift */; };
 		8B18916E1E36911900D55B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18916D1E36911900D55B5A /* SettingsViewController.swift */; };
 		8B2B04981E0AFAF70076799E /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */; };
+		8BD2D8581E39DD4400F9535F /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2D8541E39DD4400F9535F /* PasswordContainerView.swift */; };
+		8BD2D8591E39DD4400F9535F /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2D8551E39DD4400F9535F /* PasswordDotView.swift */; };
+		8BD2D85A1E39DD4400F9535F /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2D8561E39DD4400F9535F /* PasswordInputView.swift */; };
+		8BD2D85B1E39DD4400F9535F /* PasswordUIValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2D8571E39DD4400F9535F /* PasswordUIValidation.swift */; };
+		8BD2D85D1E39DD7F00F9535F /* PasswordContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD2D85C1E39DD7F00F9535F /* PasswordContainerView.xib */; };
+		8BD2D85F1E39F5B400F9535F /* PasswordPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2D85E1E39F5B400F9535F /* PasswordPromptViewController.swift */; };
 		8BE3DF091E3938E400C7B5E2 /* SettingsViewControllerEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3DF081E3938E400C7B5E2 /* SettingsViewControllerEnums.swift */; };
 		8BF3EFDE1E0577E4002BCB60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFDD1E0577E4002BCB60 /* AppDelegate.swift */; };
 		8BF3EFE01E0577E4002BCB60 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3EFDF1E0577E4002BCB60 /* LoginViewController.swift */; };
@@ -43,6 +49,12 @@
 		8B10F1141E105489006B74F9 /* Vault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vault.entitlements; sourceTree = "<group>"; };
 		8B18916D1E36911900D55B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
+		8BD2D8541E39DD4400F9535F /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
+		8BD2D8551E39DD4400F9535F /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
+		8BD2D8561E39DD4400F9535F /* PasswordInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
+		8BD2D8571E39DD4400F9535F /* PasswordUIValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordUIValidation.swift; sourceTree = "<group>"; };
+		8BD2D85C1E39DD7F00F9535F /* PasswordContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordContainerView.xib; sourceTree = "<group>"; };
+		8BD2D85E1E39F5B400F9535F /* PasswordPromptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordPromptViewController.swift; sourceTree = "<group>"; };
 		8BE3DF081E3938E400C7B5E2 /* SettingsViewControllerEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerEnums.swift; sourceTree = "<group>"; };
 		8BF3EFDA1E0577E4002BCB60 /* Vault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BF3EFDD1E0577E4002BCB60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +117,7 @@
 				8BF3EFEF1E057C8E002BCB60 /* HomeViewController.swift */,
 				8B022D271E0F0C830011AE73 /* EntryViewController.swift */,
 				8B18916D1E36911900D55B5A /* SettingsViewController.swift */,
+				8BD2D85E1E39F5B400F9535F /* PasswordPromptViewController.swift */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -115,6 +128,17 @@
 				8B0EA4841E0C5A620028D020 /* Entry.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		8BD2D8531E39DD1000F9535F /* PasswordScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8BD2D8541E39DD4400F9535F /* PasswordContainerView.swift */,
+				8BD2D8551E39DD4400F9535F /* PasswordDotView.swift */,
+				8BD2D8561E39DD4400F9535F /* PasswordInputView.swift */,
+				8BD2D8571E39DD4400F9535F /* PasswordUIValidation.swift */,
+			);
+			name = PasswordScreen;
 			sourceTree = "<group>";
 		};
 		8BF3EFD11E0577E4002BCB60 = {
@@ -138,6 +162,7 @@
 		8BF3EFDC1E0577E4002BCB60 /* Vault */ = {
 			isa = PBXGroup;
 			children = (
+				8BD2D8531E39DD1000F9535F /* PasswordScreen */,
 				8B10F1141E105489006B74F9 /* Vault.entitlements */,
 				8B022D261E0E959A0011AE73 /* Modules */,
 				8B022D251E0E94F20011AE73 /* Common */,
@@ -156,6 +181,7 @@
 		8BF3EFF51E06A2C9002BCB60 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8BD2D85C1E39DD7F00F9535F /* PasswordContainerView.xib */,
 				8BF3EFF61E06D9F8002BCB60 /* FlatButton.swift */,
 				8B2B04971E0AFAF70076799E /* FloatingActionButton.swift */,
 				8B0EA4811E0C5A080028D020 /* HomeEntryCell.swift */,
@@ -236,6 +262,7 @@
 				8B0842C41E0DBBFC0006EF76 /* GoogleService-Info.plist in Resources */,
 				8BF3EFE51E0577E4002BCB60 /* Assets.xcassets in Resources */,
 				8BF3EFE31E0577E4002BCB60 /* Main.storyboard in Resources */,
+				8BD2D85D1E39DD7F00F9535F /* PasswordContainerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,11 +325,16 @@
 				8B022D281E0F0C830011AE73 /* EntryViewController.swift in Sources */,
 				8BF3EFDE1E0577E4002BCB60 /* AppDelegate.swift in Sources */,
 				8B1075EA1E16B8DD0060A9EE /* UIColor+Extension.swift in Sources */,
+				8BD2D85B1E39DD4400F9535F /* PasswordUIValidation.swift in Sources */,
+				8BD2D85A1E39DD4400F9535F /* PasswordInputView.swift in Sources */,
 				8B1075E81E168CEC0060A9EE /* KeychainHelper.swift in Sources */,
 				8B0E7D561E34DCD300852FFF /* ActivityIndicatorHelper.swift in Sources */,
 				8BF3EFF71E06D9F8002BCB60 /* FlatButton.swift in Sources */,
+				8BD2D8581E39DD4400F9535F /* PasswordContainerView.swift in Sources */,
+				8BD2D8591E39DD4400F9535F /* PasswordDotView.swift in Sources */,
 				8BE3DF091E3938E400C7B5E2 /* SettingsViewControllerEnums.swift in Sources */,
 				8B0E7D541E33D27400852FFF /* RoundedCornerButton.swift in Sources */,
+				8BD2D85F1E39F5B400F9535F /* PasswordPromptViewController.swift in Sources */,
 				8B0C91331E083DB40036AA63 /* DetailViewController.swift in Sources */,
 				8B18916E1E36911900D55B5A /* SettingsViewController.swift in Sources */,
 				8B2B04981E0AFAF70076799E /* FloatingActionButton.swift in Sources */,

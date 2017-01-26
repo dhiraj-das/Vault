@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uYT-is-kRV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7E8-nx-Mqj">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -60,6 +60,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="971.25" y="38.028169014084504"/>
+        </scene>
+        <!--Password Prompt View Controller-->
+        <scene sceneID="OpF-J9-rRx">
+            <objects>
+                <viewController id="7E8-nx-Mqj" customClass="PasswordPromptViewController" customModule="Vault" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Da-Ox-ZSD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yqk-yf-uBs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tlM-Mg-3eR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3a-Mc-RuY">
+                                <rect key="frame" x="123" y="70" width="74" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b3a-Mc-RuY" firstAttribute="centerX" secondItem="tlM-Mg-3eR" secondAttribute="centerX" id="C5e-Cx-2WI"/>
+                            <constraint firstItem="b3a-Mc-RuY" firstAttribute="top" secondItem="6Da-Ox-ZSD" secondAttribute="bottom" constant="50" id="zMc-To-5sA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="passwordLabel" destination="b3a-Mc-RuY" id="bnM-s6-lNP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QfA-MA-v5h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7.5" y="760.56338028169012"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="xZe-cX-wSk">
