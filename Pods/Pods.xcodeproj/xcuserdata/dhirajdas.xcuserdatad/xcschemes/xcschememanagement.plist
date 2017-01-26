@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FoldingCell.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,12 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4704BC321AEB5E1D8F84F8D791605C93</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>495B85FE56A538EC139ED4417A8FC4EE</key>
+		<key>4A8A18B835F151032F3F4CA9AFD94306</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,22 +57,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>76B930802BFE1AD30367FA702DB7C943</key>
+		<key>5AF77BBA96233224FE77A78770DDD2F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>939BB09DE389E7E4F501F3FABDFC83BC</key>
+		<key>5F9FF3CE88D477EBB3A6BFA21956E826</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B626E472969D6F87698AF0041EAAFC38</key>
+		<key>79D16D64619EB1752D1A5238B0A81DC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9605C90A92B84072CAA01E774513D62</key>
+		<key>B3803FEE08D69E452042D853CB240DBF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

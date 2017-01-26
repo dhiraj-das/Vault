@@ -16,7 +16,6 @@ PODS:
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (1.0.8)
-  - FoldingCell (2.0.3)
   - Google-Mobile-Ads-SDK (7.14.0)
   - GoogleInterchangeUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
@@ -37,7 +36,6 @@ DEPENDENCIES:
   - Fabric
   - Firebase/AdMob
   - Firebase/Core
-  - FoldingCell
   - IQKeyboardManagerSwift
   - RealmSwift
   - SkyFloatingLabelTextField (~> 2.0.0)
@@ -49,7 +47,6 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 6e58fc9b397664369ac7617fb0ba93fab6ba7b5b
   FirebaseCore: d0ed25f27b6f9158eccc439f1be6f92e81207e28
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  FoldingCell: 2f3113051609167776743415fc00ed877ac6d62c
   Google-Mobile-Ads-SDK: dbb0211c52ca02f72331b831ce4ccd218cf08748
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
@@ -60,6 +57,6 @@ SPEC CHECKSUMS:
   SkyFloatingLabelTextField: a81a0eaed2785d1599f11484c6ebc1c4eb5d1228
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: 8950c056f711d28eb3cfbf14f2366fe724577829
+PODFILE CHECKSUM: ad74cad9be598b3c31c115290eceacd3e6757209
 
 COCOAPODS: 1.1.1

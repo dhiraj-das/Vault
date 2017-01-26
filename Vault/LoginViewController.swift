@@ -17,20 +17,13 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
-        // Get the local authentication context.
         let context = LAContext()
-        
-        // Declare a NSError variable.
         var error: NSError?
-        
-        // Set the reason string that will appear on the authentication alert.
         let reasonString = "Authenticate to access your Vault."
         
-        // Check if the device can evaluate the policy.
         if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success, error) in
+            context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString) { (success, error) in
                 if success {
-                    // If authentication was successful then load the data.
                     OperationQueue.main.addOperation({ () -> Void in
                         print("Successful")
                         self.loginSuccessful()
@@ -61,7 +54,7 @@ class LoginViewController: UIViewController {
 //                        
 //                    }
                 }
-            })
+            }
         }
         else{
             // If the security policy cannot be evaluated then show a short message depending on the error.
@@ -87,8 +80,9 @@ class LoginViewController: UIViewController {
     }
     
     private func loginSuccessful() {
-        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        navigationController?.pushViewController(homeVC, animated: true)
+        if let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+            navigationController?.pushViewController(homeVC, animated: true)
+        }
     }
 }
 

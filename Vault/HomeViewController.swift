@@ -38,19 +38,23 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavBar()
         loadEntries()
         createCellHeightsArray()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupNavBar()
         blurEffectView?.removeFromSuperview()
     }
     
     func setupNavBar() {
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.barTintColor = UIColor.navigationBar()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        
+    
         navigationItem.title = "Vault"
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!]
         settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(settingsPressed))
@@ -85,7 +89,22 @@ class HomeViewController: UIViewController {
     }
     
     @objc func settingsPressed() {
-        
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            self.blurEffectView = blurEffectView
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.addSubview(blurEffectView)
+            }, completion: { (Bool) in
+                let settingsViewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+                self.navigationController?.pushViewController(settingsViewController, animated: true)
+            })
+        } else {
+            let settingsViewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+            navigationController?.pushViewController(settingsViewController, animated: true)
+        }
     }
     
     @objc func addNewPressed() {
@@ -103,7 +122,8 @@ class HomeViewController: UIViewController {
 
             })
         } else {
-            self.view.backgroundColor = UIColor.backgroundDark()
+            let newEntryViewController = self.storyboard?.instantiateViewController(withIdentifier: "EntryViewController") as! EntryViewController
+            self.present(newEntryViewController, animated: true, completion: nil)
         }
     }
     
