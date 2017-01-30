@@ -14,7 +14,7 @@ enum SettingsSections: Int {
 }
 
 enum GeneralSection: Int {
-    case changePassword, featureRequest, bug
+    case changePassword, enableTouchID
     case count
 }
 

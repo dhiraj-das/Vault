@@ -14,8 +14,8 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
+        registerClassForTableView()
+        AppearanceManager.setNavigationBarHidden(forViewController: self, hidden: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -23,7 +23,11 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
+    }
+    
+    private func registerClassForTableView() {
+        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
     }
     
 }

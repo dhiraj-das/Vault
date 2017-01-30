@@ -195,16 +195,11 @@ private extension PasswordInputView {
 
 internal extension NSLayoutConstraint {
     class func addConstraints(fromView view: UIView, toView baseView: UIView, constraintInsets insets: UIEdgeInsets) {
-        if #available(iOS 9.0, *) {
-            baseView.topAnchor.constraint(equalTo: view.topAnchor, constant: -insets.top)
-            let topConstraint = baseView.topAnchor.constraint(equalTo: view.topAnchor, constant: -insets.top)
-            let bottomConstraint = baseView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: insets.bottom)
-            let leftConstraint = baseView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: -insets.left)
-            let rightConstraint = baseView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: insets.right)
-            NSLayoutConstraint.activate([topConstraint, bottomConstraint, leftConstraint, rightConstraint])
-        } else {
-            // Fallback on earlier versions
-        }
+        let topConstraint = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: baseView, attribute: .top, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: baseView, attribute: .bottom, multiplier: 1, constant: 0)
+        let leftConstraint = NSLayoutConstraint(item: view, attribute: .left, relatedBy: .equal, toItem: baseView, attribute: .left, multiplier: 1, constant: 0)
+        let rightConstraint = NSLayoutConstraint(item: view, attribute: .right, relatedBy: .equal, toItem: baseView, attribute: .right, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([topConstraint, bottomConstraint, leftConstraint, rightConstraint])
     }
     
     class func addEqualConstraintsFromSubView(_ subView: UIView, toSuperView superView: UIView) {

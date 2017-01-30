@@ -27,4 +27,10 @@ extension UIColor {
     class func textDarkGrey() -> UIColor {
         return UIColor(red: 108/255, green: 123/255, blue: 154/255, alpha: 1)
     }
+    class func deleteButtonRed() -> UIColor {
+        return UIColor(red: 187/255, green: 0/255, blue: 0/255, alpha: 1)
+    }
+    class func orangeButton() -> UIColor {
+        return UIColor(red: 179/255, green: 72/255, blue: 8/255, alpha: 1)
+    }
 }

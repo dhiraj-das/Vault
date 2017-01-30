@@ -102,7 +102,7 @@ open class PasswordContainerView: UIView {
         self.passwordInputViews.forEach { passwordInputView in
             let label = passwordInputView.label
             label.removeFromSuperview()
-            vc.view.addSubview(label)
+            passwordInputView.addSubview(label)
             label.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.addConstraints(fromView: label, toView: passwordInputView, constraintInsets: .zero)
         }
@@ -120,6 +120,13 @@ open class PasswordContainerView: UIView {
     open class func create(in containerView: UIView, digit: Int) -> PasswordContainerView {
         let passwordContainerView = create(withDigit: digit)
         containerView.addSubview(passwordContainerView)
+        passwordContainerView.translatesAutoresizingMaskIntoConstraints = false
+        let topConst = NSLayoutConstraint(item: passwordContainerView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 0)
+        let bottomConst = NSLayoutConstraint(item: passwordContainerView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0)
+        let leftConst = NSLayoutConstraint(item: passwordContainerView, attribute: .left, relatedBy: .equal, toItem: containerView, attribute: .left, multiplier: 1, constant: 0)
+        let rightConst = NSLayoutConstraint(item: passwordContainerView, attribute: .right, relatedBy: .equal, toItem: containerView, attribute: .right, multiplier: 1, constant: 0)
+        let centerXConst = NSLayoutConstraint(item: passwordContainerView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1, constant: 0)
+        containerView.addConstraints([topConst, centerXConst, leftConst,rightConst,bottomConst])
         return passwordContainerView
     }
     
@@ -159,7 +166,9 @@ open class PasswordContainerView: UIView {
     }
     
     @IBAction func touchAuthenticationAction(_ sender: UIButton) {
-        guard isTouchAuthenticationAvailable else { return }
+        guard isTouchAuthenticationAvailable else {
+            return
+        }
         touchIDContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: touchAuthenticationReason) { (success, error) in
             DispatchQueue.main.async {
                 if success {
@@ -198,16 +207,16 @@ private extension PasswordContainerView {
         
         if isVibrancyEffect {
             //delete button
-            titleColor = whiteColor
+            titleColor = UIColor.textLightGrey()
             //dot view
-            strokeColor = whiteColor
-            fillColor = whiteColor
+            strokeColor = UIColor.textLightGrey()
+            fillColor = UIColor.textLightGrey()
             //input view
             circleBackgroundColor = clearColor
-            highlightBackgroundColor = whiteColor
-            borderColor = clearColor
-            textColor = whiteColor
-            highlightTextColor = whiteColor
+            highlightBackgroundColor = UIColor.textLightGrey()
+            borderColor = UIColor.clear
+            textColor = UIColor.textLightGrey()
+            highlightTextColor = UIColor.textLightGrey()
         } else {
             //delete button
             titleColor = tintColor
@@ -232,8 +241,8 @@ private extension PasswordContainerView {
             passwordInputView.textColor = textColor
             passwordInputView.highlightTextColor = highlightTextColor
             passwordInputView.highlightBackgroundColor = highlightBackgroundColor
-            passwordInputView.circleView.layer.borderColor = UIColor.white.cgColor
-            //borderWidth as a flag, will recalculate in PasswordInputView.updateUI()
+            passwordInputView.circleView.layer.borderColor = UIColor.textLightGrey()
+.cgColor //borderWidth as a flag, will recalculate in PasswordInputView.updateUI()
             passwordInputView.isVibrancyEffect = isVibrancyEffect
         }
     }

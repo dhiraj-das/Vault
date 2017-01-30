@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeEntryCell: UITableViewCell {
+class HomeEntryCell: MWSwipeableTableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var displayImage: UIImageView!
@@ -21,6 +21,7 @@ class HomeEntryCell: UITableViewCell {
         super.awakeFromNib()
         displayImage.layer.cornerRadius = 5
         setupAppearance()
+        setupButtons()
     }
     
     private func setupAppearance() {
@@ -28,6 +29,15 @@ class HomeEntryCell: UITableViewCell {
         descriptionTextView.textContainerInset = UIEdgeInsets.zero
         closeDescriptionText.textContainer.lineFragmentPadding = 0
         closeDescriptionText.textContainerInset = UIEdgeInsets.zero
+    }
+    
+    private func setupButtons() {
+        let button = RoundedCornerButton(frame: .zero)
+        button.cornerRadius = 4
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.orangeButton()
+        button.setTitle("Delete", for: .normal)
+        rightButton = button
     }
     
     override func layoutSubviews() {

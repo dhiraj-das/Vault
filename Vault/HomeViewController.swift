@@ -13,11 +13,10 @@ import GoogleMobileAds
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
-    @IBOutlet weak var bannedAd: GADBannerView!
-    private var newEntryButton: FloatingActionButton!
+    @IBOutlet weak var bannerAd: GADBannerView!
     let kCloseCellHeight: CGFloat = 84
     let kCloseCellWithDescriptionHeight: CGFloat = 120
-    let kOpenCellHeight: CGFloat = 122//119
+    let kOpenCellHeight: CGFloat = 122
     let kOpenCellWithDescriptionHeight: CGFloat = 150
     var entries: Results<Entry>!
     var mainEntries: Results<Entry>!
@@ -32,6 +31,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBannerAd()
+        setupNavBar()
         tableview.estimatedRowHeight = kCloseCellHeight
         tableview.rowHeight = UITableViewAutomaticDimension
     }
@@ -45,36 +45,7 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupNavBar()
-        blurEffectView?.removeFromSuperview()
-    }
-    
-    func setupNavBar() {
-        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.barTintColor = UIColor.navigationBar()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-    
-        navigationItem.title = "Vault"
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!]
-        settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(settingsPressed))
-        searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonPressed))
-//        let buttonView = UIView(frame: CGRect(x: 10, y: 0, width: 60, height: 30))
-//        buttonView.backgroundColor = UIColor.barButton()
-//        buttonView.layer.cornerRadius = 15
-//        buttonView.clipsToBounds = true
-//        addNewButton = UIBarButtonItem(customView: buttonView)
-//        addNewButton.action = #selector(addNewPressed)
-//        addNewButton.target = self
-//        addNewButton.title = "Add"
-        addNewButton = UIBarButtonItem(image: UIImage(named: "add_new"), style: .plain, target: self, action: #selector(addNewPressed))
-        navigationItem.leftBarButtonItem = settingsButton
-        navigationItem.rightBarButtonItems = [addNewButton, searchButton]
-        searchBar.delegate = self
-        searchBar.searchBarStyle = .default
-        searchBar.showsCancelButton = true
-        searchBar.placeholder = "Search"
-        searchBar.isTranslucent = true
+        self.blurEffectView?.removeFromSuperview()
     }
     
     func createCellHeightsArray() {
@@ -88,6 +59,41 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func loadEntries() {
+        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+        let realm = try? Realm(configuration: configuration)
+        mainEntries = realm?.objects(Entry.self)
+        entries = mainEntries
+    }
+    
+    func setupNavBar() {
+        AppearanceManager.setNavigationBarHidden(forViewController: self, hidden: false)
+        navigationController?.navigationBar.barTintColor = UIColor.navigationBar()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        navigationItem.title = "Vault"
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!]
+        settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(settingsPressed))
+        searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonPressed))
+        //        let buttonView = UIView(frame: CGRect(x: 10, y: 0, width: 60, height: 30))
+        //        buttonView.backgroundColor = UIColor.barButton()
+        //        buttonView.layer.cornerRadius = 15
+        //        buttonView.clipsToBounds = true
+        //        addNewButton = UIBarButtonItem(customView: buttonView)
+        //        addNewButton.action = #selector(addNewPressed)
+        //        addNewButton.target = self
+        //        addNewButton.title = "Add"
+        addNewButton = UIBarButtonItem(image: UIImage(named: "add_new"), style: .plain, target: self, action: #selector(addNewPressed))
+        navigationItem.leftBarButtonItem = settingsButton
+        navigationItem.rightBarButtonItems = [addNewButton, searchButton]
+        searchBar.delegate = self
+        searchBar.searchBarStyle = .default
+        searchBar.showsCancelButton = true
+        searchBar.placeholder = "Search"
+        searchBar.isTranslucent = true
+    }
+    
     @objc func settingsPressed() {
         if !UIAccessibilityIsReduceTransparencyEnabled() {
             let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
@@ -98,11 +104,15 @@ class HomeViewController: UIViewController {
             UIView.animate(withDuration: 0.5, animations: {
                 self.view.addSubview(blurEffectView)
             }, completion: { (Bool) in
-                let settingsViewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-                self.navigationController?.pushViewController(settingsViewController, animated: true)
+                self.pushSettingsViewController()
             })
         } else {
-            let settingsViewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+            pushSettingsViewController()
+        }
+    }
+    
+    private func pushSettingsViewController() {
+        if let settingsViewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as? SettingsViewController {
             navigationController?.pushViewController(settingsViewController, animated: true)
         }
     }
@@ -126,12 +136,11 @@ class HomeViewController: UIViewController {
             self.present(newEntryViewController, animated: true, completion: nil)
         }
     }
-    
-    func loadEntries() {
-        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
-        let realm = try? Realm(configuration: configuration)
-        mainEntries = realm?.objects(Entry.self)
-        entries = mainEntries
+}
+
+extension HomeViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }
 
@@ -143,6 +152,8 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HomeEntryCell {
+            cell.delegate = self
+            cell.tag = indexPath.row
             cell.titleLabel.text = entries[indexPath.item].website
             cell.subtitleLabel.text = entries[indexPath.item].username
             cell.displayImage.image = UIImage(data: entries[indexPath.item].imageData as Data)
@@ -190,6 +201,38 @@ extension HomeViewController: UITableViewDelegate {
     }
 }
 
+extension HomeViewController: MWSwipeableTableViewCellDelegate {
+    func swipeableTableViewCellDidRecognizeSwipe(cell: MWSwipeableTableViewCell) {
+        
+    }
+    
+    func swipeableTableViewCellDidTapLeftButton(cell: MWSwipeableTableViewCell) {
+        print("did tap left button")
+    }
+    
+    func swipeableTableViewCellDidTapRightButton(cell: MWSwipeableTableViewCell) {
+        deleteObjectInIndexPath(index: cell.tag) { success in
+            self.tableview.deleteRows(at: [IndexPath(row: cell.tag, section: 0)], with: .fade)
+            self.loadEntries()
+            self.createCellHeightsArray()
+        }
+    }
+    
+    private func deleteObjectInIndexPath(index: Int, completion: (_ success: Bool) -> Void) {
+        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+        let realm = try? Realm(configuration: configuration)
+        let objectToDelete = mainEntries[index]
+        realm?.beginWrite()
+        realm?.delete(objectToDelete)
+        do {
+            _ = try realm?.commitWrite()
+            completion(true)
+        } catch {
+            completion(false)
+        }
+    }
+}
+
 extension HomeViewController: GADBannerViewDelegate{
 //    func createAndLoadInterstitial() {
 //        interstitial = GADInterstitial(adUnitID: "ca-app-pub-4023839110527071/4805410140")
@@ -204,18 +247,12 @@ extension HomeViewController: GADBannerViewDelegate{
 //    }
     
     func loadBannerAd() {
-        bannedAd.adUnitID = "ca-app-pub-4023839110527071/9096008941"
-        bannedAd.rootViewController = self
-        bannedAd.isAutoloadEnabled = true
+        bannerAd.adUnitID = "ca-app-pub-4023839110527071/9096008941"
+        bannerAd.rootViewController = self
+        bannerAd.isAutoloadEnabled = true
         let request = GADRequest()
         request.testDevices = [ kGADSimulatorID, "282910d03e92c55c9127fe98f85612c8" ]
-        bannedAd.load(request)
-    }
-}
-
-extension HomeViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
+        bannerAd.load(request)
     }
 }
 
