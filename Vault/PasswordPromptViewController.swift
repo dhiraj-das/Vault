@@ -27,6 +27,7 @@ class PasswordPromptViewController: UIViewController {
             self?.dismiss(animated: true, completion: nil)
         }
         passwordUIValidation.view.rearrangeForVisualEffectView(in: self)
+        passwordUIValidation.view.touchAuthenticationAction()
     }
     
     override func viewWillAppear(_ animated: Bool) {

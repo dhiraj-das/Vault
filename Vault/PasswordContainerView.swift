@@ -165,7 +165,7 @@ open class PasswordContainerView: UIView {
         inputString = String(inputString.characters.dropLast())
     }
     
-    @IBAction func touchAuthenticationAction(_ sender: UIButton) {
+    @IBAction func touchAuthenticationAction(_ sender: UIButton? = nil) {
         guard isTouchAuthenticationAvailable else {
             return
         }

@@ -18,6 +18,8 @@
 		8B1075E81E168CEC0060A9EE /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1075E71E168CEC0060A9EE /* KeychainHelper.swift */; };
 		8B1075EA1E16B8DD0060A9EE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1075E91E16B8DD0060A9EE /* UIColor+Extension.swift */; };
 		8B18916E1E36911900D55B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18916D1E36911900D55B5A /* SettingsViewController.swift */; };
+		8B4F46B61E4394EA00392258 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F46B51E4394EA00392258 /* SettingsTableViewCell.swift */; };
+		8B4F46B81E43958600392258 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F46B71E43958600392258 /* HeaderView.swift */; };
 		8B5685DF1E3A574B00A71866 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5685DE1E3A574B00A71866 /* PasswordModel.swift */; };
 		8BD2D8581E39DD4400F9535F /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2D8541E39DD4400F9535F /* PasswordContainerView.swift */; };
 		8BD2D8591E39DD4400F9535F /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2D8551E39DD4400F9535F /* PasswordDotView.swift */; };
@@ -48,6 +50,8 @@
 		8B1075E91E16B8DD0060A9EE /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8B10F1141E105489006B74F9 /* Vault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vault.entitlements; sourceTree = "<group>"; };
 		8B18916D1E36911900D55B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8B4F46B51E4394EA00392258 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		8B4F46B71E43958600392258 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8B5685DE1E3A574B00A71866 /* PasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordModel.swift; sourceTree = "<group>"; };
 		8BD2D8541E39DD4400F9535F /* PasswordContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordContainerView.swift; sourceTree = "<group>"; };
 		8BD2D8551E39DD4400F9535F /* PasswordDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordDotView.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 		8B1032091E3E38AF00388064 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				8B4F46B41E4394BF00392258 /* Views */,
 				8B18916D1E36911900D55B5A /* SettingsViewController.swift */,
 			);
 			name = Settings;
@@ -222,6 +227,15 @@
 				8BF3EFDF1E0577E4002BCB60 /* LoginViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8B4F46B41E4394BF00392258 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B4F46B51E4394EA00392258 /* SettingsTableViewCell.swift */,
+				8B4F46B71E43958600392258 /* HeaderView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		8BF3EFD11E0577E4002BCB60 = {
@@ -411,11 +425,13 @@
 				8BD2D8591E39DD4400F9535F /* PasswordDotView.swift in Sources */,
 				8BE3DF091E3938E400C7B5E2 /* SettingsEnums.swift in Sources */,
 				8B0E7D541E33D27400852FFF /* RoundedCornerButton.swift in Sources */,
+				8B4F46B81E43958600392258 /* HeaderView.swift in Sources */,
 				8B18916E1E36911900D55B5A /* SettingsViewController.swift in Sources */,
 				8B10320D1E3E3AE800388064 /* AppearanceManager.swift in Sources */,
 				8B0EA4851E0C5A620028D020 /* Entry.swift in Sources */,
 				8B0EA4821E0C5A080028D020 /* HomeEntryCell.swift in Sources */,
 				8BF3EFF01E057C8E002BCB60 /* HomeViewController.swift in Sources */,
+				8B4F46B61E4394EA00392258 /* SettingsTableViewCell.swift in Sources */,
 				8B1032001E3BB19100388064 /* PasswordPromptViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

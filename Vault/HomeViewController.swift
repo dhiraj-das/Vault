@@ -18,8 +18,8 @@ class HomeViewController: UIViewController {
     let kCloseCellWithDescriptionHeight: CGFloat = 120
     let kOpenCellHeight: CGFloat = 122
     let kOpenCellWithDescriptionHeight: CGFloat = 150
-    var entries: Results<Entry>!
-    var mainEntries: Results<Entry>!
+    var entries: Results<Entry>?
+    var mainEntries: Results<Entry>?
     var interstitial: GADInterstitial!
     var cellHeights = [CGFloat]()
     var blurEffectView: UIVisualEffectView?
@@ -49,13 +49,15 @@ class HomeViewController: UIViewController {
     }
     
     func createCellHeightsArray() {
-        for i in 0..<entries.count {
-            if entries[i].details.characters.count > 0{
-                cellHeights.append(kCloseCellWithDescriptionHeight)
-            } else {
-                cellHeights.append(kCloseCellHeight)
+        if let entries = entries {
+            for i in 0..<entries.count {
+                if entries[i].details.characters.count > 0{
+                    cellHeights.append(kCloseCellWithDescriptionHeight)
+                } else {
+                    cellHeights.append(kCloseCellHeight)
+                }
+                tableview.reloadData()
             }
-            tableview.reloadData()
         }
     }
     
@@ -147,19 +149,23 @@ extension HomeViewController: UIGestureRecognizerDelegate {
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entries.count
+        if let entries = entries {
+            return entries.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HomeEntryCell {
             cell.delegate = self
             cell.tag = indexPath.row
-            cell.titleLabel.text = entries[indexPath.item].website
-            cell.subtitleLabel.text = entries[indexPath.item].username
-            cell.displayImage.image = UIImage(data: entries[indexPath.item].imageData as Data)
-            cell.descriptionTextView.text = entries[indexPath.item].details
-            cell.closeDescriptionText.text = entries[indexPath.item].details
-            cell.passwordLabel.text = entries[indexPath.item].password
+            cell.titleLabel.text = entries?[indexPath.item].website
+            cell.subtitleLabel.text = entries?[indexPath.item].username
+            cell.displayImage.image = UIImage(data: entries?[indexPath.item].imageData as! Data)
+            cell.descriptionTextView.text = entries?[indexPath.item].details
+            cell.closeDescriptionText.text = entries?[indexPath.item].details
+            cell.passwordLabel.text = entries?[indexPath.item].password
             return cell
         }
         return UITableViewCell()
@@ -172,7 +178,7 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard case let cell as HomeEntryCell = tableView.cellForRow(at: indexPath) else {
+        guard case let cell as HomeEntryCell = tableView.cellForRow(at: indexPath), let entries = entries else {
             return
         }
         if cellHeights[indexPath.row] == kCloseCellHeight || cellHeights[indexPath.row] == kCloseCellWithDescriptionHeight {                                // open cell
@@ -221,9 +227,9 @@ extension HomeViewController: MWSwipeableTableViewCellDelegate {
     private func deleteObjectInIndexPath(index: Int, completion: (_ success: Bool) -> Void) {
         let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
         let realm = try? Realm(configuration: configuration)
-        let objectToDelete = mainEntries[index]
+        let objectToDelete = mainEntries?[index]
         realm?.beginWrite()
-        realm?.delete(objectToDelete)
+        realm?.delete(objectToDelete!)
         do {
             _ = try realm?.commitWrite()
             completion(true)

@@ -27,23 +27,22 @@ class SettingsViewController: UIViewController {
     }
     
     private func registerClassForTableView() {
-        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "header")
+        tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
+        tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
 }
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = UIColor.textDarkGrey()
-        header.tintColor = UIColor.backgroundDark()
-        header.textLabel?.font = UIFont(name: "Helvetica Neue", size: 12)
-        header.textLabel?.textAlignment = NSTextAlignment.left
+        guard let headerView = view as? HeaderView else {
+            return
+        }
         switch section {
         case SettingsSections.general.rawValue:
-            header.textLabel?.text = "GENERAL"
+            headerView.textLabel?.text = "GENERAL"
         default:
-            header.textLabel?.text = "ABOUT"
+            headerView.textLabel?.text = "ABOUT"
         }
     }
     
@@ -54,32 +53,37 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    
-    @objc func updateSwitchAtIndexPath(sender: UISwitch) {
-        print(sender.isOn)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case GeneralSection.changePassword.rawValue:
+                print("change password")
+            default:
+                break
+            }
+        }
     }
 }
 
 extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") {
-            cell.backgroundColor = UIColor.navigationBar()
-            cell.textLabel?.textColor = UIColor.textLightGrey()
-            let toggleSwitch = UISwitch()
-            cell.accessoryView = toggleSwitch
-            toggleSwitch.addTarget(self, action: #selector(updateSwitchAtIndexPath(sender:)), for: UIControlEvents.touchUpInside)
-            switch indexPath.section {
-            case 0:
-                switch indexPath.row {
-                case 0:
-                    cell.textLabel?.text = "Enable PIN Authentication"
-                    toggleSwitch.tag = 55
-                    cell.accessoryView?.isHidden = false
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? SettingsTableViewCell{
+            switch SettingsSections(rawValue: indexPath.section)! {
+            case .general:
+                switch GeneralSection(rawValue: indexPath.row)! {
+                case .enableTouchID:
+                    cell.textLabel?.text = "Enable TouchID"
+                    cell.toggleSwitch.tag = 1
+                    cell.toggleSwitch.isHidden = false
+                case .changePassword:
+                    cell.toggleSwitch.isHidden = true
+                    cell.textLabel?.text = "Change PIN"
+                    cell.toggleSwitch.tag = 2
                 default:
-                    cell.accessoryView?.isHidden = true
+                    cell.toggleSwitch.isHidden = true
                 }
             default:
-                cell.accessoryView?.isHidden = true
+                cell.toggleSwitch.isHidden = true
             }
             return cell
         }
