@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -103,6 +104,24 @@
             </objects>
             <point key="canvasLocation" x="1005" y="760.56338028169012"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="TQ2-f3-0Fu">
+            <objects>
+                <viewController id="ieu-P4-4ma" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dO9-mF-9eB"/>
+                        <viewControllerLayoutGuide type="bottom" id="bcZ-Gn-4Gk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HT3-tg-LFx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="POg-Vm-Fwx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-921" y="607"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="xZe-cX-wSk">
             <objects>
@@ -150,7 +169,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5rW-eA-r2X" id="3S8-Hj-AqE">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
@@ -186,6 +205,257 @@
             </objects>
             <point key="canvasLocation" x="1966.875" y="759.50704225352115"/>
         </scene>
+        <!--ChangePIN View Controller-->
+        <scene sceneID="ZjS-RH-NmK">
+            <objects>
+                <viewController storyboardIdentifier="ChangePINViewController" id="TXO-oi-qbG" customClass="ChangePINViewController" customModule="Vault" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fBY-b9-Vaw"/>
+                        <viewControllerLayoutGuide type="bottom" id="lBd-ol-q0d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hfG-Wh-G3d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1j-9Q-aT6" customClass="RoundedCornerButton" customModule="Vault" customModuleProvider="target">
+                                <rect key="frame" x="8" y="27" width="60" height="30"/>
+                                <color key="backgroundColor" red="0.1647058824" green="0.18039215689999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="1Xo-P1-kpu"/>
+                                    <constraint firstAttribute="height" constant="30" id="djd-Ea-9qJ"/>
+                                </constraints>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="TXO-oi-qbG" eventType="touchUpInside" id="Qt1-om-FTS"/>
+                                    <action selector="backButtonPressed:" destination="9Dn-00-qev" eventType="touchUpInside" id="VfM-CS-tp3"/>
+                                    <action selector="cancelPressed:" destination="7Af-CM-MN0" eventType="touchUpInside" id="Be9-F2-n0u"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change PIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k70-R1-LZ6">
+                                <rect key="frame" x="72" y="28.5" width="176" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.70196078429999997" green="0.28134676809999998" blue="0.031296148900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="XA3-WZ-qGi">
+                                <rect key="frame" x="40" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="X93-KM-afg"/>
+                                    <constraint firstAttribute="height" constant="40" id="ekj-YL-EYF"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="yOf-7G-1dZ"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="2Kp-9z-dUt">
+                                <rect key="frame" x="80" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="hlI-6t-ChT"/>
+                                    <constraint firstAttribute="height" constant="40" id="hq4-Q3-27A"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="GM2-mM-f42"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="mIx-YA-Cv2">
+                                <rect key="frame" x="120" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bQb-jS-hlK"/>
+                                    <constraint firstAttribute="width" constant="40" id="nT3-ZD-w6B"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="xDF-qc-Pw4"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="6Il-wC-rPM">
+                                <rect key="frame" x="160" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="GYz-rW-ArL"/>
+                                    <constraint firstAttribute="height" constant="40" id="MzL-t8-dFs"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="zMa-sC-Zqy"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="esZ-iA-jll">
+                                <rect key="frame" x="200" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="O8f-nK-92e"/>
+                                    <constraint firstAttribute="height" constant="40" id="gzN-6K-06j"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="u0e-EU-X6t"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="A1D-e8-9XE">
+                                <rect key="frame" x="240" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="CLY-hP-Zil"/>
+                                    <constraint firstAttribute="height" constant="40" id="n7n-4d-npj"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="6AT-Cf-l50"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="jBw-gZ-kAM">
+                                <rect key="frame" x="40" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="4lY-9k-ST3"/>
+                                    <constraint firstAttribute="height" constant="40" id="jDJ-pl-utz"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="mg0-Bx-Kni"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="HH5-F8-SFR">
+                                <rect key="frame" x="80" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dUA-td-goL"/>
+                                    <constraint firstAttribute="width" constant="40" id="fNI-sg-PMl"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="oMr-5k-9lW"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="cBU-Sf-tb8">
+                                <rect key="frame" x="120" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Emk-yy-Ibc"/>
+                                    <constraint firstAttribute="width" constant="40" id="k0G-jL-bP4"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="ujC-fM-iXt"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="tHT-Em-0re">
+                                <rect key="frame" x="160" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="9NG-pP-LBG"/>
+                                    <constraint firstAttribute="height" constant="40" id="MqI-Ws-QUS"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="9Iv-gm-5vt"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="lUE-6y-b6K">
+                                <rect key="frame" x="200" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="C77-JO-nRx"/>
+                                    <constraint firstAttribute="width" constant="40" id="D8S-0g-Osb"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="Rut-PR-xvL"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="exl-FN-Ve1">
+                                <rect key="frame" x="240" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="RhS-aW-gm4"/>
+                                    <constraint firstAttribute="height" constant="40" id="fWY-4u-dKj"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TXO-oi-qbG" id="9yl-fD-Nkb"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.093647770579999998" green="0.1052702442" blue="0.13847774269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tHT-Em-0re" firstAttribute="centerY" secondItem="cBU-Sf-tb8" secondAttribute="centerY" id="1K9-4N-Tmp"/>
+                            <constraint firstItem="A1D-e8-9XE" firstAttribute="centerY" secondItem="esZ-iA-jll" secondAttribute="centerY" id="2kt-AB-DXO"/>
+                            <constraint firstItem="r1j-9Q-aT6" firstAttribute="leading" secondItem="hfG-Wh-G3d" secondAttribute="leading" constant="8" id="3Py-Kw-kMJ"/>
+                            <constraint firstItem="mIx-YA-Cv2" firstAttribute="trailing" secondItem="hfG-Wh-G3d" secondAttribute="centerX" id="4w8-CL-7JL"/>
+                            <constraint firstItem="esZ-iA-jll" firstAttribute="centerY" secondItem="6Il-wC-rPM" secondAttribute="centerY" id="8vg-fw-7Sv"/>
+                            <constraint firstItem="HH5-F8-SFR" firstAttribute="centerY" secondItem="cBU-Sf-tb8" secondAttribute="centerY" id="BXw-aM-uY8"/>
+                            <constraint firstItem="cBU-Sf-tb8" firstAttribute="leading" secondItem="HH5-F8-SFR" secondAttribute="trailing" id="Bub-8h-qnm"/>
+                            <constraint firstItem="lUE-6y-b6K" firstAttribute="centerY" secondItem="tHT-Em-0re" secondAttribute="centerY" id="FER-A3-VXd"/>
+                            <constraint firstItem="esZ-iA-jll" firstAttribute="leading" secondItem="6Il-wC-rPM" secondAttribute="trailing" id="LmC-UU-ecE"/>
+                            <constraint firstItem="HH5-F8-SFR" firstAttribute="leading" secondItem="jBw-gZ-kAM" secondAttribute="trailing" id="THr-gE-25q"/>
+                            <constraint firstItem="exl-FN-Ve1" firstAttribute="leading" secondItem="lUE-6y-b6K" secondAttribute="trailing" id="Uy4-8J-NWb"/>
+                            <constraint firstItem="2Kp-9z-dUt" firstAttribute="centerY" secondItem="mIx-YA-Cv2" secondAttribute="centerY" id="WVF-cZ-iFp"/>
+                            <constraint firstItem="mIx-YA-Cv2" firstAttribute="top" secondItem="k70-R1-LZ6" secondAttribute="bottom" constant="130" id="WrA-hP-KId"/>
+                            <constraint firstItem="k70-R1-LZ6" firstAttribute="centerY" secondItem="r1j-9Q-aT6" secondAttribute="centerY" id="X2V-SB-R4z"/>
+                            <constraint firstItem="2Kp-9z-dUt" firstAttribute="leading" secondItem="XA3-WZ-qGi" secondAttribute="trailing" id="Y7O-GW-QdC"/>
+                            <constraint firstItem="tHT-Em-0re" firstAttribute="leading" secondItem="cBU-Sf-tb8" secondAttribute="trailing" id="fYf-rY-cqO"/>
+                            <constraint firstItem="jBw-gZ-kAM" firstAttribute="top" secondItem="XA3-WZ-qGi" secondAttribute="top" id="heL-9b-8y5"/>
+                            <constraint firstItem="A1D-e8-9XE" firstAttribute="leading" secondItem="esZ-iA-jll" secondAttribute="trailing" id="htM-VM-iT3"/>
+                            <constraint firstItem="r1j-9Q-aT6" firstAttribute="top" secondItem="fBY-b9-Vaw" secondAttribute="bottom" constant="7" id="nI3-PZ-E4s"/>
+                            <constraint firstItem="6Il-wC-rPM" firstAttribute="leading" secondItem="mIx-YA-Cv2" secondAttribute="trailing" id="oIN-nz-SNx"/>
+                            <constraint firstItem="mIx-YA-Cv2" firstAttribute="leading" secondItem="2Kp-9z-dUt" secondAttribute="trailing" id="oMN-bV-ZBv"/>
+                            <constraint firstItem="lUE-6y-b6K" firstAttribute="leading" secondItem="tHT-Em-0re" secondAttribute="trailing" id="p0k-ea-RJQ"/>
+                            <constraint firstItem="exl-FN-Ve1" firstAttribute="centerY" secondItem="lUE-6y-b6K" secondAttribute="centerY" id="qPU-MJ-Lgd"/>
+                            <constraint firstItem="6Il-wC-rPM" firstAttribute="centerY" secondItem="mIx-YA-Cv2" secondAttribute="centerY" id="rar-82-3VN"/>
+                            <constraint firstAttribute="trailing" secondItem="k70-R1-LZ6" secondAttribute="trailing" constant="72" id="s13-bz-Rbk"/>
+                            <constraint firstItem="jBw-gZ-kAM" firstAttribute="centerY" secondItem="HH5-F8-SFR" secondAttribute="centerY" id="vYt-u4-20l"/>
+                            <constraint firstItem="jBw-gZ-kAM" firstAttribute="leading" secondItem="XA3-WZ-qGi" secondAttribute="leading" id="w8Y-OH-zpY"/>
+                            <constraint firstItem="k70-R1-LZ6" firstAttribute="leading" secondItem="r1j-9Q-aT6" secondAttribute="trailing" constant="4" id="xIg-qX-k0J"/>
+                            <constraint firstItem="XA3-WZ-qGi" firstAttribute="centerY" secondItem="2Kp-9z-dUt" secondAttribute="centerY" id="zZJ-k1-om3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="r1j-9Q-aT6" id="HHs-rK-U1X"/>
+                        <outlet property="fifthConfirmPinEntryField" destination="lUE-6y-b6K" id="Xai-bK-L8Y"/>
+                        <outlet property="fifthPinEntryField" destination="esZ-iA-jll" id="HLy-fK-Qwv"/>
+                        <outlet property="firstConfirmPinEntryField" destination="jBw-gZ-kAM" id="WHo-f0-mTz"/>
+                        <outlet property="firstPinEntryField" destination="XA3-WZ-qGi" id="rkD-GM-LN2"/>
+                        <outlet property="fourthConfirmPinEntryField" destination="tHT-Em-0re" id="2sT-8W-IdY"/>
+                        <outlet property="fourthPinEntryField" destination="6Il-wC-rPM" id="rRY-Hx-U7Q"/>
+                        <outlet property="secondConfirmPinEntryField" destination="HH5-F8-SFR" id="fQT-vq-vsr"/>
+                        <outlet property="secondPinEntryField" destination="2Kp-9z-dUt" id="jgt-65-7ZB"/>
+                        <outlet property="sixthConfirmPinEntryField" destination="exl-FN-Ve1" id="a7f-ty-2xS"/>
+                        <outlet property="sixthPinEntryField" destination="A1D-e8-9XE" id="CvP-Jz-9Yj"/>
+                        <outlet property="thirdConfirmPinEntryField" destination="cBU-Sf-tb8" id="kYa-bR-gL2"/>
+                        <outlet property="thirdPinEntryField" destination="mIx-YA-Cv2" id="dja-wR-VeQ"/>
+                        <outlet property="titleLabel" destination="k70-R1-LZ6" id="MR7-Tf-Rk5"/>
+                        <segue destination="ieu-P4-4ma" kind="presentation" identifier="toSetPassword" id="hKh-hN-3Tr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xas-6G-eYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2859.375" y="772.18309859154931"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="f0o-pi-Ku6">
             <objects>
@@ -209,7 +479,7 @@
                                         <rect key="frame" x="0.0" y="1" width="320" height="352"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gee-od-zjQ" id="D2P-Ux-vbf">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="351.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="351"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1U-H0-nE4">
@@ -649,10 +919,10 @@
             </objects>
             <point key="canvasLocation" x="33" y="38"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Launch View Controller-->
         <scene sceneID="Blk-Va-PCc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hra-n3-3Er" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hra-n3-3Er" customClass="LaunchViewController" customModule="Vault" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kSe-hb-tII">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -661,6 +931,7 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="7E8-nx-Mqj" kind="relationship" relationship="rootViewController" id="s1v-Ae-Z8P"/>
+                        <segue destination="ieu-P4-4ma" kind="presentation" identifier="toLogin" id="k6M-K4-5wT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MBB-Ou-4E6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -677,4 +948,7 @@
         <image name="username_grey" width="25" height="32"/>
         <image name="website-icon-29479" width="750" height="1334"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hKh-hN-3Tr"/>
+    </inferredMetricsTieBreakers>
 </document>

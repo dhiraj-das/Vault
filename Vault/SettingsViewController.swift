@@ -30,7 +30,6 @@ class SettingsViewController: UIViewController {
         tableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cell")
     }
-    
 }
 
 extension SettingsViewController: UITableViewDelegate {
@@ -57,10 +56,16 @@ extension SettingsViewController: UITableViewDelegate {
         if indexPath.section == 0 {
             switch indexPath.row {
             case GeneralSection.changePassword.rawValue:
-                print("change password")
+                self.pushChangePINViewController()
             default:
                 break
             }
+        }
+    }
+    
+    private func pushChangePINViewController() {
+        if let changePINViewController = storyboard?.instantiateViewController(withIdentifier: "ChangePINViewController") as? ChangePINViewController {
+            navigationController?.pushViewController(changePINViewController, animated: true)
         }
     }
 }

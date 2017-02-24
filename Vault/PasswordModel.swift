@@ -10,8 +10,11 @@ import UIKit
 
 class MyPasswordModel {
     class func match(_ password: String) -> MyPasswordModel? {
-        guard password == "123456" else { return nil }
-        return MyPasswordModel()
+        if let pin = KeychainHelper.getKey(forKey: "PIN") as String?, pin == password {
+            return MyPasswordModel()
+        } else {
+            return nil
+        }
     }
 }
 

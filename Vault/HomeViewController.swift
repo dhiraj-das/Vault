@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadEntries() {
-        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKeyForRealm())
         let realm = try? Realm(configuration: configuration)
         mainEntries = realm?.objects(Entry.self)
         entries = mainEntries
@@ -225,7 +225,7 @@ extension HomeViewController: MWSwipeableTableViewCellDelegate {
     }
     
     private func deleteObjectInIndexPath(index: Int, completion: (_ success: Bool) -> Void) {
-        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKeyForRealm())
         let realm = try? Realm(configuration: configuration)
         let objectToDelete = mainEntries?[index]
         realm?.beginWrite()
@@ -301,7 +301,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+        let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKeyForRealm())
         let realm = try? Realm(configuration: configuration)
         let predicate = NSPredicate(format: "website contains[c] %@", searchText)
         entries = realm?.objects(Entry.self).filter(predicate)

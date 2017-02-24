@@ -48,7 +48,7 @@ class EntryViewController: UIViewController {
     @IBAction func savePressed(_ sender: Any) {
         view.endEditing(true)
         if validateFields() {
-            let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKey())
+            let configuration = Realm.Configuration(encryptionKey: KeychainHelper.getKeyForRealm())
             var realm: Realm?
             do {
                 realm = try Realm(configuration: configuration)

@@ -17,7 +17,9 @@
 		8B10320F1E3E57F700388064 /* SwipeableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10320E1E3E57F700388064 /* SwipeableTableViewCell.swift */; };
 		8B1075E81E168CEC0060A9EE /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1075E71E168CEC0060A9EE /* KeychainHelper.swift */; };
 		8B1075EA1E16B8DD0060A9EE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1075E91E16B8DD0060A9EE /* UIColor+Extension.swift */; };
+		8B17AE2E1E459FEF00347A2C /* ChangePINViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17AE2D1E459FEF00347A2C /* ChangePINViewController.swift */; };
 		8B18916E1E36911900D55B5A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18916D1E36911900D55B5A /* SettingsViewController.swift */; };
+		8B2AFEB81E5F78EE00D94118 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AFEB71E5F78EE00D94118 /* LaunchViewController.swift */; };
 		8B4F46B61E4394EA00392258 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F46B51E4394EA00392258 /* SettingsTableViewCell.swift */; };
 		8B4F46B81E43958600392258 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F46B71E43958600392258 /* HeaderView.swift */; };
 		8B5685DF1E3A574B00A71866 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5685DE1E3A574B00A71866 /* PasswordModel.swift */; };
@@ -49,7 +51,9 @@
 		8B1075E71E168CEC0060A9EE /* KeychainHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		8B1075E91E16B8DD0060A9EE /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8B10F1141E105489006B74F9 /* Vault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vault.entitlements; sourceTree = "<group>"; };
+		8B17AE2D1E459FEF00347A2C /* ChangePINViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePINViewController.swift; sourceTree = "<group>"; };
 		8B18916D1E36911900D55B5A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8B2AFEB71E5F78EE00D94118 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		8B4F46B51E4394EA00392258 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		8B4F46B71E43958600392258 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8B5685DE1E3A574B00A71866 /* PasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordModel.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 		8B022D261E0E959A0011AE73 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8B2AFEB61E5F78D400D94118 /* LaunchScreen */,
+				8B17AE2F1E45A00D00347A2C /* ChangePIN */,
 				8B10320A1E3E38CA00388064 /* New Entry */,
 				8B1032091E3E38AF00388064 /* Settings */,
 				8B1032041E3E381F00388064 /* Home */,
@@ -229,6 +235,30 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		8B17AE2F1E45A00D00347A2C /* ChangePIN */ = {
+			isa = PBXGroup;
+			children = (
+				8B17AE301E45A03300347A2C /* ViewControllers */,
+			);
+			name = ChangePIN;
+			sourceTree = "<group>";
+		};
+		8B17AE301E45A03300347A2C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B17AE2D1E459FEF00347A2C /* ChangePINViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8B2AFEB61E5F78D400D94118 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8B2AFEB71E5F78EE00D94118 /* LaunchViewController.swift */,
+			);
+			name = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		8B4F46B41E4394BF00392258 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,7 +346,7 @@
 				TargetAttributes = {
 					8BF3EFD91E0577E4002BCB60 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = DNAANZPNS3;
+						DevelopmentTeam = 4FGQMH8WW3;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -416,6 +446,8 @@
 				8B022D281E0F0C830011AE73 /* EntryViewController.swift in Sources */,
 				8BF3EFDE1E0577E4002BCB60 /* AppDelegate.swift in Sources */,
 				8B5685DF1E3A574B00A71866 /* PasswordModel.swift in Sources */,
+				8B2AFEB81E5F78EE00D94118 /* LaunchViewController.swift in Sources */,
+				8B17AE2E1E459FEF00347A2C /* ChangePINViewController.swift in Sources */,
 				8B1075EA1E16B8DD0060A9EE /* UIColor+Extension.swift in Sources */,
 				8BD2D85B1E39DD4400F9535F /* PasswordUIValidation.swift in Sources */,
 				8BD2D85A1E39DD4400F9535F /* PasswordInputView.swift in Sources */,
@@ -561,7 +593,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Vault/Vault.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DNAANZPNS3;
+				DEVELOPMENT_TEAM = 4FGQMH8WW3;
 				INFOPLIST_FILE = Vault/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -579,7 +611,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Vault/Vault.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DNAANZPNS3;
+				DEVELOPMENT_TEAM = 4FGQMH8WW3;
 				INFOPLIST_FILE = Vault/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -73,7 +73,7 @@ open class PasswordContainerView: UIView {
         }
     }
     
-    open var touchAuthenticationReason = "Touch to unlock"
+    open var touchAuthenticationReason = "Touch to unlock Vault"
     
     //MARK: AutoLayout
     open var width: CGFloat = 0 {
