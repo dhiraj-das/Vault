@@ -18,7 +18,16 @@ enum GeneralSection: Int {
     case count
 }
 
-enum AboutSection: Int {
+enum AboutSection: Int, CustomStringConvertible {
     case about
     case count
+    
+    var description: String {
+        switch self {
+        case .about:
+            return "© 2017 Dhiraj Das.\nMade with ❤️"
+        default:
+            return ""
+        }
+    }
 }

@@ -89,6 +89,8 @@ extension SettingsViewController: UITableViewDataSource {
                 }
             default:
                 cell.toggleSwitch.isHidden = true
+                cell.textLabel?.text = AboutSection.about.description
+                cell.textLabel?.numberOfLines = 0
             }
             return cell
         }
@@ -96,6 +98,9 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == SettingsSections.about.rawValue {
+            return 100
+        }
         return 60
     }
     
